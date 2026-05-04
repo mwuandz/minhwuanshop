@@ -1,0 +1,3090 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minh Quân Profile</title>
+  <meta name="description" content="Minh Quân Profile" />
+  <meta name="theme-color" content="#0b1020" />
+  <style>
+    :root{
+      color-scheme: dark;
+      --bg:#070b16;
+      --bg-2:#0e1530;
+      --surface:rgba(16,22,43,.72);
+      --surface-strong:rgba(18,24,48,.92);
+      --surface-soft:rgba(255,255,255,.06);
+      --text:#f7f9ff;
+      --muted:#adb8d1;
+      --line:rgba(255,255,255,.12);
+      --accent:#7c5cff;
+      --accent-2:#00d5ff;
+      --accent-3:#ff7bc6;
+      --good:#8ef1c3;
+      --warning:#ffd36a;
+      --shadow:0 25px 70px rgba(0,0,0,.32);
+      --radius:26px;
+      --radius-sm:18px;
+      --max:1180px;
+      --nav-h:78px;
+      --container:clamp(20px,4vw,48px);
+      --gradient:linear-gradient(135deg,var(--accent),var(--accent-2),var(--accent-3));
+    }
+
+    body[data-theme="light"]{
+      color-scheme: light;
+      --bg:#f3f7ff;
+      --bg-2:#e8eefc;
+      --surface:rgba(255,255,255,.78);
+      --surface-strong:rgba(255,255,255,.96);
+      --surface-soft:rgba(55,76,115,.06);
+      --text:#15203b;
+      --muted:#51607d;
+      --line:rgba(21,32,59,.10);
+      --shadow:0 24px 60px rgba(60,86,140,.16);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg,var(--bg),var(--bg-2));
+      color:var(--text);
+      overflow-x:hidden;
+      letter-spacing:.01em;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button,input,select{font:inherit}
+    button:disabled{opacity:.62;cursor:not-allowed}
+    img{max-width:100%;display:block}
+    ::selection{background:rgba(124,92,255,.28)}
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 14% 20%, rgba(124,92,255,.22), transparent 30%),
+        radial-gradient(circle at 85% 18%, rgba(0,213,255,.18), transparent 30%),
+        radial-gradient(circle at 50% 84%, rgba(255,123,198,.16), transparent 34%);
+      pointer-events:none;
+      z-index:-6;
+    }
+
+    #particles{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:-7;
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .aurora{
+      position:fixed;
+      border-radius:50%;
+      filter:blur(80px);
+      opacity:.24;
+      z-index:-5;
+      animation:drift 16s ease-in-out infinite alternate;
+      pointer-events:none;
+    }
+    .aurora.a1{width:260px;height:260px;background:#7c5cff;top:12%;left:4%}
+    .aurora.a2{width:340px;height:340px;background:#00d5ff;top:5%;right:8%;animation-duration:20s}
+    .aurora.a3{width:320px;height:320px;background:#ff7bc6;bottom:8%;left:36%;animation-duration:24s}
+
+    @keyframes drift{
+      0%{transform:translate3d(0,0,0) scale(1)}
+      100%{transform:translate3d(30px,-25px,0) scale(1.14)}
+    }
+
+    .spotlight{
+      position:fixed;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,.14), transparent 62%);
+      filter:blur(20px);
+      pointer-events:none;
+      z-index:-4;
+      transform:translate(-50%,-50%);
+      mix-blend-mode:screen;
+      opacity:.65;
+    }
+
+    .progress{
+      position:fixed;
+      top:0;
+      left:0;
+      height:3px;
+      width:0;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+      z-index:999;
+      box-shadow:0 0 18px rgba(124,92,255,.5);
+    }
+
+    .preloader{
+      position:fixed;
+      inset:0;
+      background:rgba(6,10,20,.85);
+      display:grid;
+      place-items:center;
+      z-index:1200;
+      backdrop-filter:blur(12px);
+      transition:opacity .65s ease, visibility .65s ease;
+    }
+    .preloader.hidden{opacity:0;visibility:hidden}
+    .preloader-inner{
+      text-align:center;
+      display:grid;
+      gap:14px;
+      justify-items:center;
+    }
+    .preloader-logo{
+      width:72px;
+      height:72px;
+      border-radius:24px;
+      background:var(--gradient);
+      display:grid;
+      place-items:center;
+      font-size:1.5rem;
+      font-weight:800;
+      box-shadow:0 20px 40px rgba(0,0,0,.28);
+      animation:pulse 1.4s ease-in-out infinite;
+    }
+    .preloader-text{
+      color:#d8e4ff;
+      font-weight:600;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:.88rem;
+    }
+
+    @keyframes pulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.08)}
+    }
+
+    .wrap{
+      width:min(var(--max), calc(100% - (var(--container) * 2)));
+      margin-inline:auto;
+    }
+
+    header{
+      position:fixed;
+      top:16px;
+      left:50%;
+      transform:translateX(-50%);
+      width:min(calc(var(--max) + 20px), calc(100% - 20px));
+      z-index:80;
+    }
+
+    .nav-shell{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:12px 18px;
+      border:1px solid var(--line);
+      background:rgba(11,16,32,.45);
+      backdrop-filter:blur(18px);
+      border-radius:999px;
+      box-shadow:var(--shadow);
+    }
+
+    body[data-theme="light"] .nav-shell{
+      background:rgba(255,255,255,.75);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:max-content;
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+
+    .brand-dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--gradient);
+      box-shadow:0 0 14px rgba(124,92,255,.6);
+    }
+
+    nav{
+      display:flex;
+      gap:6px;
+      align-items:center;
+      flex-wrap:nowrap;
+      overflow:auto;
+      scrollbar-width:none;
+    }
+    nav::-webkit-scrollbar{display:none}
+
+    .nav-link{
+      color:var(--muted);
+      padding:10px 14px;
+      border-radius:999px;
+      transition:.25s ease;
+      font-size:.95rem;
+      white-space:nowrap;
+    }
+    .nav-link:hover,
+    .nav-link.active{
+      color:var(--text);
+      background:var(--surface-soft);
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:max-content;
+    }
+
+    .icon-btn{
+      border:none;
+      color:var(--text);
+      background:var(--surface-soft);
+      border:1px solid var(--line);
+      width:46px;
+      height:46px;
+      border-radius:16px;
+      cursor:pointer;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .icon-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.10)}
+
+    .cmd-btn{
+      border:none;
+      background:linear-gradient(135deg, rgba(124,92,255,.22), rgba(0,213,255,.18));
+      color:var(--text);
+      border:1px solid var(--line);
+      padding:12px 16px;
+      border-radius:16px;
+      cursor:pointer;
+      font-weight:700;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      transition:.25s ease;
+    }
+    .cmd-btn:hover{transform:translateY(-2px)}
+    .kbd{
+      display:inline-grid;
+      place-items:center;
+      min-width:34px;
+      height:28px;
+      padding:0 8px;
+      border-radius:10px;
+      background:rgba(255,255,255,.1);
+      font-size:.8rem;
+      color:var(--muted);
+      border:1px solid var(--line);
+    }
+
+    main{
+      padding-top:calc(var(--nav-h) + 36px);
+    }
+
+    section{
+      position:relative;
+      padding:86px 0;
+    }
+
+    .section-label{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--surface-soft);
+      color:var(--muted);
+      font-size:.85rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .section-head{
+      display:grid;
+      gap:16px;
+      margin-bottom:28px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:clamp(1.9rem, 2vw + 1rem, 3rem);
+      line-height:1.08;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      max-width:760px;
+      font-size:1.03rem;
+      line-height:1.75;
+    }
+
+    .hero{
+      min-height:100svh;
+      display:grid;
+      align-items:center;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:32px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:700;
+      font-size:.84rem;
+      margin-bottom:16px;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:42px;
+      height:1px;
+      background:linear-gradient(90deg, transparent, var(--accent-2));
+    }
+
+    .hero h1{
+      margin:0;
+      font-size:clamp(2.8rem, 6vw, 6rem);
+      line-height:.95;
+      letter-spacing:-.04em;
+    }
+
+    .gradient-text{
+      background:var(--gradient);
+      background-size:220% 220%;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      animation:gradientShift 10s ease infinite;
+      display:inline-block;
+    }
+
+    @keyframes gradientShift{
+      0%,100%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+    }
+
+    .hero-lead{
+      margin:18px 0 0;
+      font-size:clamp(1.12rem, 1vw + 1rem, 1.5rem);
+      color:var(--text);
+      font-weight:600;
+      min-height:2.2em;
+    }
+
+    .typed-wrap{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      min-width:10ch;
+    }
+
+    .caret{
+      width:10px;
+      height:1.2em;
+      border-right:2px solid currentColor;
+      animation:blink .9s steps(1) infinite;
+    }
+
+    @keyframes blink{
+      0%,50%{opacity:1}
+      50.01%,100%{opacity:0}
+    }
+
+    .hero-sub{
+      margin:18px 0 0;
+      font-size:1.05rem;
+      line-height:1.9;
+      color:var(--muted);
+      max-width:700px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:15px 22px;
+      border-radius:18px;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+      font-weight:700;
+      letter-spacing:.01em;
+      position:relative;
+      overflow:hidden;
+      will-change:transform;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:white;
+      background:var(--gradient);
+      box-shadow:0 12px 28px rgba(124,92,255,.24);
+    }
+    .btn-secondary{
+      color:var(--text);
+      background:var(--surface);
+      border:1px solid var(--line);
+      backdrop-filter:blur(10px);
+    }
+    .btn-ghost{
+      color:var(--text);
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+    }
+
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:auto auto -40px -20px;
+      width:70px;
+      height:70px;
+      background:rgba(255,255,255,.16);
+      border-radius:50%;
+      transform:scale(0);
+      transition:transform .35s ease;
+    }
+    .btn:hover::after{transform:scale(1.8)}
+
+    .hero-badges{
+      margin-top:22px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border:1px solid var(--line);
+      background:var(--surface-soft);
+      color:var(--muted);
+      border-radius:999px;
+      font-size:.92rem;
+    }
+
+    .hero-card{
+      position:relative;
+      padding:28px;
+      background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+      border:1px solid var(--line);
+      border-radius:34px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);
+      overflow:hidden;
+      transform-style:preserve-3d;
+    }
+
+    body[data-theme="light"] .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.82));
+    }
+
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:-30% auto auto -10%;
+      width:200px;
+      height:200px;
+      background:radial-gradient(circle, rgba(124,92,255,.34), transparent 62%);
+      pointer-events:none;
+    }
+
+    .hero-card-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:20px;
+    }
+
+    .status-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(142,241,195,.12);
+      color:var(--good);
+      border:1px solid rgba(142,241,195,.26);
+      font-size:.9rem;
+      font-weight:700;
+    }
+    .status-pill::before{
+      content:"";
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:currentColor;
+      box-shadow:0 0 14px currentColor;
+      animation:blinkStatus 1.4s ease-in-out infinite;
+    }
+    @keyframes blinkStatus{
+      0%,100%{transform:scale(1);opacity:1}
+      50%{transform:scale(.7);opacity:.55}
+    }
+
+    .avatar-shell{
+      position:relative;
+      width:min(100%, 320px);
+      margin:4px auto 22px;
+      display:grid;
+      place-items:center;
+    }
+
+    .avatar-orbit{
+      position:absolute;
+      inset:auto;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      border:1px dashed rgba(255,255,255,.18);
+      animation:spin 16s linear infinite;
+    }
+    .avatar-orbit::before,
+    .avatar-orbit::after{
+      content:"";
+      position:absolute;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background:var(--gradient);
+      box-shadow:0 0 14px rgba(124,92,255,.5);
+    }
+    .avatar-orbit::before{top:20px;left:24px}
+    .avatar-orbit::after{right:12px;bottom:36px}
+
+    @keyframes spin{
+      to{transform:rotate(360deg)}
+    }
+
+    .avatar{
+      width:190px;
+      height:190px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-size:3rem;
+      font-weight:900;
+      background:radial-gradient(circle at 30% 20%, rgba(255,255,255,.35), rgba(255,255,255,.1)),
+                 linear-gradient(145deg, rgba(124,92,255,.55), rgba(0,213,255,.42));
+      border:1px solid rgba(255,255,255,.2);
+      box-shadow:0 18px 36px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.3);
+      backdrop-filter:blur(12px);
+      overflow:hidden;
+      background-size:cover;
+      background-position:center;
+      text-transform:uppercase;
+    }
+
+    .hero-card h3{
+      margin:0;
+      font-size:1.6rem;
+    }
+    .hero-card p{
+      margin:.35rem 0 0;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .widget-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+      margin-top:22px;
+    }
+
+    .widget{
+      padding:16px;
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:var(--surface-soft);
+      min-height:108px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .widget span{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .widget strong{
+      font-size:1.35rem;
+      line-height:1.2;
+    }
+
+    .stack{
+      display:grid;
+      gap:22px;
+    }
+
+    .panel{
+      padding:28px;
+      border-radius:var(--radius);
+      background:var(--surface);
+      border:1px solid var(--line);
+      backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
+    }
+
+    .about-layout{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+    }
+
+    .about-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.95;
+      font-size:1.03rem;
+    }
+
+    .action-row{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:24px;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:16px;
+    }
+
+    .info-card{
+      padding:22px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      min-height:190px;
+      transition:transform .22s ease, border-color .22s ease;
+      transform-style:preserve-3d;
+    }
+
+    body[data-theme="light"] .info-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.86));
+    }
+
+    .info-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(124,92,255,.35);
+    }
+
+    .info-card .icon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:rgba(124,92,255,.14);
+      margin-bottom:16px;
+      font-size:1.35rem;
+    }
+
+    .info-card h3{
+      margin:0 0 10px;
+      font-size:1.1rem;
+    }
+
+    .info-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:.98rem;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:16px;
+    }
+
+    .stat-card{
+      padding:22px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:var(--surface);
+      text-align:left;
+      position:relative;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .stat-card::after{
+      content:"";
+      position:absolute;
+      inset:auto -20px -20px auto;
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(124,92,255,.26), transparent 60%);
+      pointer-events:none;
+    }
+
+    .stat-value{
+      font-size:clamp(2rem, 3vw, 3rem);
+      font-weight:900;
+      line-height:1;
+      margin-bottom:12px;
+      letter-spacing:-.05em;
+    }
+
+    .stat-label{
+      color:var(--muted);
+      line-height:1.65;
+      font-size:.98rem;
+    }
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .skill-card{
+      padding:22px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:var(--surface);
+      box-shadow:var(--shadow);
+      transition:transform .22s ease;
+      transform-style:preserve-3d;
+    }
+    .skill-card:hover{transform:translateY(-6px)}
+
+    .skill-card-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    .skill-card h3{
+      margin:0;
+      font-size:1.1rem;
+    }
+    .skill-card small{
+      color:var(--muted);
+      display:block;
+      margin-top:6px;
+      font-size:.92rem;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(0,213,255,.12);
+      color:var(--accent-2);
+      border:1px solid rgba(0,213,255,.18);
+      font-size:.86rem;
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .bar{
+      height:14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      overflow:hidden;
+      position:relative;
+      border:1px solid var(--line);
+    }
+
+    .bar > i{
+      display:block;
+      height:100%;
+      width:0;
+      border-radius:inherit;
+      background:var(--gradient);
+      background-size:220% 220%;
+      animation:gradientShift 8s ease infinite;
+      box-shadow:0 0 16px rgba(124,92,255,.35);
+      transition:width 1.1s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .skill-foot{
+      margin-top:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .project-card{
+      padding:22px;
+      border-radius:26px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      transform-style:preserve-3d;
+      position:relative;
+      overflow:hidden;
+    }
+
+    body[data-theme="light"] .project-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.86));
+    }
+
+    .project-card::before{
+      content:"";
+      position:absolute;
+      inset:-10% auto auto -10%;
+      width:140px;
+      height:140px;
+      background:radial-gradient(circle, rgba(0,213,255,.18), transparent 65%);
+      pointer-events:none;
+    }
+
+    .project-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .project-type{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--warning);
+      font-size:.9rem;
+      font-weight:700;
+    }
+
+    .project-card h3{
+      margin:0;
+      font-size:1.18rem;
+    }
+
+    .project-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:.98rem;
+    }
+
+    .pill-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--surface-soft);
+      color:var(--muted);
+      font-size:.84rem;
+    }
+
+    .timeline{
+      position:relative;
+      margin-left:16px;
+      padding-left:26px;
+      display:grid;
+      gap:18px;
+    }
+
+    .timeline::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:8px;
+      width:2px;
+      height:100%;
+      background:linear-gradient(180deg, rgba(124,92,255,.35), rgba(0,213,255,.35), transparent);
+    }
+
+    .timeline-item{
+      position:relative;
+      padding:22px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:var(--surface);
+      box-shadow:var(--shadow);
+      transform-style:preserve-3d;
+    }
+
+    .timeline-item::before{
+      content:"";
+      position:absolute;
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      background:var(--gradient);
+      left:-34px;
+      top:28px;
+      box-shadow:0 0 16px rgba(124,92,255,.45);
+    }
+
+    .timeline-year{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(124,92,255,.12);
+      border:1px solid rgba(124,92,255,.2);
+      color:#d7d0ff;
+      font-weight:800;
+      letter-spacing:.02em;
+      font-size:.88rem;
+      margin-bottom:14px;
+    }
+
+    body[data-theme="light"] .timeline-year{color:#5b38d6}
+
+    .timeline-item h3{
+      margin:0 0 10px;
+      font-size:1.16rem;
+    }
+
+    .timeline-item p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .fun-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr .9fr;
+      gap:18px;
+    }
+
+    .fun-card{
+      padding:24px;
+      border-radius:26px;
+      border:1px solid var(--line);
+      background:var(--surface);
+      box-shadow:var(--shadow);
+      min-height:250px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .fun-card h3{
+      margin:0;
+      font-size:1.16rem;
+    }
+
+    .quote{
+      font-size:1.15rem;
+      line-height:1.85;
+      margin:0;
+      color:var(--text);
+    }
+
+    .muted{
+      color:var(--muted);
+      line-height:1.8;
+      margin:0;
+    }
+
+    .mini-list{
+      display:grid;
+      gap:12px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    .mini-list li{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      background:var(--surface-soft);
+      border-radius:16px;
+      border:1px solid var(--line);
+      color:var(--muted);
+    }
+
+    .mini-list strong{
+      color:var(--text);
+      font-size:.97rem;
+    }
+
+    .contact-shell{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:28px;
+      align-items:center;
+      padding:34px;
+      border-radius:32px;
+      background:
+        radial-gradient(circle at top left, rgba(124,92,255,.18), transparent 30%),
+        radial-gradient(circle at right center, rgba(0,213,255,.18), transparent 30%),
+        var(--surface);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+
+    .contact-shell h2{
+      margin:0 0 12px;
+      font-size:clamp(2rem, 3vw, 3rem);
+      line-height:1.04;
+    }
+
+    .contact-shell p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      max-width:680px;
+    }
+
+    .social-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-top:24px;
+    }
+
+    .social{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:16px 18px;
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      transition:transform .2s ease, border-color .2s ease;
+      min-height:74px;
+    }
+
+    .social:hover{
+      transform:translateY(-4px);
+      border-color:rgba(124,92,255,.35);
+    }
+
+    .social .icon{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.08);
+      font-size:1.2rem;
+      flex:0 0 auto;
+    }
+
+    .social strong{
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .social small{
+      color:var(--muted);
+      display:block;
+      line-height:1.4;
+    }
+
+    footer{
+      padding:26px 0 40px;
+    }
+
+    .footer-inner{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:16px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity .65s ease, transform .65s ease;
+    }
+    .reveal.in-view{
+      opacity:1;
+      transform:none;
+    }
+
+    .back-top{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:58px;
+      height:58px;
+      border:none;
+      border-radius:20px;
+      background:var(--gradient);
+      color:white;
+      font-size:1.2rem;
+      box-shadow:0 18px 30px rgba(124,92,255,.28);
+      cursor:pointer;
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(12px);
+      transition:.25s ease;
+      z-index:90;
+    }
+    .back-top.show{
+      opacity:1;
+      visibility:visible;
+      transform:none;
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:26px;
+      transform:translateX(-50%) translateY(20px);
+      padding:14px 18px;
+      border-radius:16px;
+      background:rgba(14,20,40,.92);
+      color:white;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+      z-index:1400;
+      white-space:nowrap;
+      max-width:min(calc(100% - 24px), 480px);
+      text-align:center;
+    }
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(5,9,19,.52);
+      backdrop-filter:blur(12px);
+      z-index:1300;
+      display:grid;
+      place-items:center;
+      padding:22px;
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+    }
+    .overlay.show{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .modal-box,
+    .palette-box{
+      width:min(720px, 100%);
+      border-radius:30px;
+      border:1px solid var(--line);
+      background:var(--surface-strong);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .modal-head,
+    .palette-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:22px 24px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .modal-head h3{
+      margin:0;
+      font-size:1.2rem;
+    }
+
+    .close-btn{
+      width:42px;
+      height:42px;
+      border:none;
+      border-radius:14px;
+      background:var(--surface-soft);
+      color:var(--text);
+      cursor:pointer;
+      border:1px solid var(--line);
+    }
+
+    .modal-body{
+      padding:24px;
+      display:grid;
+      gap:18px;
+    }
+
+    .modal-body p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.85;
+    }
+
+    .palette-input-wrap{
+      padding:16px 20px 0;
+    }
+
+    .palette-input{
+      width:100%;
+      border:none;
+      outline:none;
+      border-radius:18px;
+      padding:16px 18px;
+      background:var(--surface-soft);
+      color:var(--text);
+      border:1px solid var(--line);
+    }
+
+    .palette-list{
+      padding:14px 16px 18px;
+      display:grid;
+      gap:10px;
+      max-height:360px;
+      overflow:auto;
+    }
+
+    .palette-item{
+      width:100%;
+      text-align:left;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 16px;
+      border:none;
+      border-radius:18px;
+      background:transparent;
+      color:var(--text);
+      cursor:pointer;
+      border:1px solid transparent;
+      transition:.2s ease;
+    }
+
+    .palette-item:hover,
+    .palette-item.active{
+      background:var(--surface-soft);
+      border-color:var(--line);
+    }
+
+    .palette-item small{
+      color:var(--muted);
+      display:block;
+      margin-top:6px;
+    }
+
+    .hint{
+      color:var(--muted);
+      font-size:.86rem;
+    }
+
+    .confetti{
+      position:fixed;
+      left:50%;
+      top:38%;
+      width:var(--size);
+      height:calc(var(--size) * 1.55);
+      background:var(--color);
+      pointer-events:none;
+      z-index:1500;
+      border-radius:3px;
+      opacity:1;
+      animation:confetti-fall var(--duration) cubic-bezier(.15,.85,.25,1) forwards;
+      transform-origin:center;
+    }
+
+    @keyframes confetti-fall{
+      to{
+        transform:translate(var(--x), var(--y)) rotate(var(--rot));
+        opacity:0;
+      }
+    }
+
+    .hide-mobile{display:inline-flex}
+
+    .library-toolbar{
+      display:grid;
+      grid-template-columns:1.2fr auto auto;
+      gap:14px;
+      align-items:center;
+      margin-bottom:22px;
+    }
+
+    .library-search,
+    .library-select{
+      width:100%;
+      border:none;
+      outline:none;
+      color:var(--text);
+      border:1px solid var(--line);
+      background:var(--surface);
+      border-radius:18px;
+      padding:15px 16px;
+      box-shadow:var(--shadow);
+    }
+
+    .library-select{
+      min-width:180px;
+      cursor:pointer;
+    }
+
+    .library-summary{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .library-summary-card{
+      border:1px solid var(--line);
+      background:var(--surface);
+      border-radius:22px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .library-summary-card span{
+      display:block;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-bottom:8px;
+    }
+
+    .library-summary-card strong{
+      font-size:1.55rem;
+      line-height:1;
+    }
+
+    .library-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .library-card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transform-style:preserve-3d;
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+
+    body[data-theme="light"] .library-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.84));
+    }
+
+    .library-thumb{
+      position:relative;
+      aspect-ratio:16/9;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 28% 20%, rgba(124,92,255,.35), transparent 32%),
+        radial-gradient(circle at 80% 76%, rgba(0,213,255,.25), transparent 34%),
+        linear-gradient(135deg, rgba(124,92,255,.24), rgba(255,123,198,.16));
+      display:grid;
+      place-items:center;
+    }
+
+    .library-thumb video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.72;
+      filter:saturate(1.08) contrast(1.05);
+    }
+
+    .library-play{
+      position:absolute;
+      inset:auto;
+      width:74px;
+      height:74px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.24);
+      background:rgba(7,11,22,.54);
+      color:white;
+      display:grid;
+      place-items:center;
+      font-size:1.8rem;
+      backdrop-filter:blur(12px);
+      cursor:pointer;
+      transition:.22s ease;
+    }
+
+    .library-play:hover{
+      transform:scale(1.08);
+      background:rgba(124,92,255,.72);
+    }
+
+    .library-badge-row{
+      position:absolute;
+      top:14px;
+      left:14px;
+      right:14px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      pointer-events:none;
+    }
+
+    .library-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(7,11,22,.58);
+      color:white;
+      border:1px solid rgba(255,255,255,.16);
+      font-size:.82rem;
+      font-weight:800;
+      backdrop-filter:blur(10px);
+    }
+
+    .library-body{
+      padding:20px;
+      display:grid;
+      gap:14px;
+      flex:1;
+    }
+
+    .library-body h3{
+      margin:0;
+      font-size:1.15rem;
+      line-height:1.35;
+    }
+
+    .library-body p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:.96rem;
+    }
+
+    .library-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .library-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:auto;
+    }
+
+    .library-empty{
+      display:none;
+      text-align:center;
+      padding:34px;
+      border-radius:26px;
+      border:1px dashed var(--line);
+      color:var(--muted);
+      background:var(--surface-soft);
+    }
+
+    .library-empty.show{
+      display:block;
+    }
+
+    .video-modal{
+      width:min(980px, 100%);
+      border-radius:30px;
+      border:1px solid var(--line);
+      background:var(--surface-strong);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .video-frame{
+      background:#000;
+      aspect-ratio:16/9;
+    }
+
+    .video-frame video{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:contain;
+      background:#000;
+    }
+
+    .video-info{
+      padding:20px 24px 24px;
+      display:grid;
+      gap:10px;
+    }
+
+    .video-info h3{
+      margin:0;
+      font-size:1.22rem;
+    }
+
+    .video-info p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+    }
+
+    @media (max-width: 1100px){
+      .hero-grid,
+      .about-layout,
+      .contact-shell{
+        grid-template-columns:1fr;
+      }
+      .projects-grid,.library-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .fun-grid{grid-template-columns:1fr 1fr}
+      .contact-shell{padding:28px}
+    }
+
+    @media (max-width: 820px){
+      header{
+        top:10px;
+        width:calc(100% - 14px);
+      }
+      .nav-shell{
+        padding:10px 12px;
+        border-radius:24px;
+        gap:12px;
+      }
+      nav{
+        order:3;
+        width:100%;
+        justify-content:flex-start;
+      }
+      .nav-actions{margin-left:auto}
+      .hide-mobile{display:none}
+      section{padding:72px 0}
+      .widget-grid,
+      .stats-grid,
+      .skills-grid,
+      .projects-grid,
+      .library-grid,
+      .library-summary,
+      .about-grid,
+      .fun-grid,
+      .social-grid{
+        grid-template-columns:1fr;
+      }
+      .hero h1{font-size:clamp(2.6rem, 12vw, 4.5rem)}
+      .hero-card{padding:22px}
+      .avatar-orbit{width:210px;height:210px}
+      .avatar{width:168px;height:168px;font-size:2.6rem}
+      .timeline{margin-left:8px;padding-left:22px}
+      .timeline-item::before{left:-29px}
+      .contact-shell h2{font-size:2.1rem}
+      .library-toolbar{grid-template-columns:1fr}
+      .library-actions{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 620px){
+      .cmd-btn .label{display:none}
+      .cmd-btn{padding:12px}
+      .btn{width:100%}
+      .hero-buttons,
+      .action-row{
+        display:grid;
+        grid-template-columns:1fr;
+      }
+      .back-top{
+        right:14px;
+        bottom:14px;
+        width:52px;
+        height:52px;
+        border-radius:18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+      }
+      .spotlight{display:none}
+    }
+
+    @media print{
+      :root, body[data-theme="light"]{
+        --bg:white;
+        --bg-2:white;
+        --surface:white;
+        --surface-strong:white;
+        --surface-soft:rgba(0,0,0,.03);
+        --text:#111827;
+        --muted:#4b5563;
+        --line:rgba(17,24,39,.12);
+        --shadow:none;
+      }
+      body{
+        background:white !important;
+      }
+      #particles,.aurora,.spotlight,.progress,.preloader,header,.back-top,.toast,.overlay,.library-toolbar,#surpriseBtn,#openPaletteBtn,#quoteBtn,#confettiBtn{
+        display:none !important;
+      }
+      section{
+        padding:20px 0 !important;
+        break-inside:avoid;
+      }
+      .panel,.hero-card,.info-card,.skill-card,.project-card,.timeline-item,.fun-card,.stat-card,.contact-shell{
+        box-shadow:none !important;
+        backdrop-filter:none !important;
+      }
+      .hero{
+        min-height:auto;
+      }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="progress" id="progress"></div>
+  <canvas id="particles"></canvas>
+  <div class="aurora a1"></div>
+  <div class="aurora a2"></div>
+  <div class="aurora a3"></div>
+  <div class="spotlight" id="spotlight"></div>
+
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">✨</div>
+      <div class="preloader-text">Đang khởi tạo website cá nhân</div>
+    </div>
+  </div>
+
+  <header>
+    <div class="nav-shell">
+      <a href="#home" class="brand">
+        <span class="brand-dot"></span>
+        <span id="brandName">Đoàn Minh Quân</span>
+      </a>
+
+      <nav id="mainNav">
+        <a class="nav-link active" href="#home">Trang chủ</a>
+        <a class="nav-link" href="#about">Giới thiệu</a>
+        <a class="nav-link" href="#skills">Kỹ năng</a>
+        <a class="nav-link" href="#projects">Dự án</a>
+        <a class="nav-link" href="#journey">Hành trình</a>
+        <a class="nav-link" href="#fun">Thú vị</a>
+        <a class="nav-link" href="#library">Thư viện</a>
+        <a class="nav-link" href="#contact">Liên hệ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Đổi giao diện">🌙</button>
+        <button class="cmd-btn" id="openPaletteBtn">
+          <span>⌘</span>
+          <span class="label hide-mobile">Quick menu</span>
+          <span class="kbd">Ctrl K</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Personal Website • Hiệu ứng • Tương tác</div>
+          <h1>
+            Xin chào, mình là
+            <span class="gradient-text" id="heroName">Đoàn Minh Quân</span>
+          </h1>
+
+          <p class="hero-lead">
+            Mình là
+            <span class="typed-wrap">
+              <span id="typedText">người yêu sáng tạo</span>
+              <span class="caret"></span>
+            </span>
+          </p>
+
+          <p class="hero-sub" id="heroIntro">
+            Mình xây dựng những trải nghiệm web gọn gàng, đẹp mắt và giàu cảm xúc. Đây là một mẫu website giới thiệu bản thân hiện đại
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary magnetic">Xem điểm nổi bật</a>
+            <a href="#contact" class="btn btn-secondary magnetic">Kết nối với mình</a>
+            <button class="btn btn-ghost magnetic" id="surpriseBtn">Bật hiệu ứng bất ngờ</button>
+          </div>
+
+          <div class="hero-badges">
+            <span class="chip" id="locationChip">📍 Việt Nam</span>
+            <span class="chip" id="emailChip">✉️ wuan@minhwuan.store</span>
+            <span class="chip" id="availabilityChip">🟢 Sẵn sàng kết nối</span>
+          </div>
+        </div>
+
+        <div class="hero-card reveal tilt">
+          <div class="hero-card-top">
+            <div>
+              <div class="status-pill" id="statusPill">Sẵn sàng cho cơ hội mới</div>
+            </div>
+            <div class="tag">Single file</div>
+          </div>
+
+          <div class="avatar-shell">
+            <div class="avatar-orbit"></div>
+            <div class="avatar" id="avatar">YOU</div>
+          </div>
+
+          <h3 id="cardName">Tên của bạn</h3>
+          <p id="cardTitle">Người sáng tạo nội dung • Yêu công nghệ • Thích trải nghiệm đẹp</p>
+
+          <div class="widget-grid">
+            <div class="widget">
+              <span>Giờ hiện tại</span>
+              <strong id="liveClock">00:00:00</strong>
+            </div>
+            <div class="widget">
+              <span>Số lần ghé thăm trên trình duyệt này</span>
+              <strong id="visitCount">1</strong>
+            </div>
+            <div class="widget">
+              <span>Chế độ hiển thị</span>
+              <strong id="themeState">Dark mode</strong>
+            </div>
+            <div class="widget">
+              <span>Điểm nhấn</span>
+              <strong>Particles • Tilt • Modal</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="section-label">Giới thiệu</span>
+          <h2>Một website cá nhân không chỉ để đẹp, mà còn để kể đúng câu chuyện của bạn.</h2>
+          <p>
+            Mình là người yêu thích công nghệ, sáng tạo nội dung và media. Mình thích tìm hiểu những xu hướng mới, biến ý tưởng thành nội dung hấp dẫn và tạo ra những sản phẩm vừa có tính thẩm mỹ vừa có giá trị truyền tải.
+          </p>
+        </div>
+
+        <div class="about-layout">
+          <div class="panel about-copy reveal">
+            <div class="stack">
+              <p id="aboutText">
+                Điều mình thích nhất là sự giao thoa giữa công nghệ và sáng tạo. Mình hứng thú với content, media vì đây là nơi mình có thể vừa học hỏi xu hướng mới, vừa thể hiện cá tính qua từng sản phẩm mình làm ra.
+              </p>
+
+              <div class="action-row">
+                <button class="btn btn-primary magnetic" id="copyEmailBtn">Sao chép email</button>
+                <a class="btn btn-secondary magnetic" id="mailButton" href="mailto:minhwuan.store@gmail.com">Gửi email</a>
+                <button class="btn btn-ghost magnetic" id="printBtn">Lưu thành PDF</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-grid" id="aboutGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats">
+      <div class="wrap">
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="section-label">Kỹ năng</span>
+          <h2>Những gì mình có thể làm tốt</h2>
+          <p>
+            Mình có kỹ năng trong việc sáng tạo nội dung, lên ý tưởng, thiết kế hình ảnh cơ bản và chỉnh sửa video ngắn. Bên cạnh đó, mình cũng yêu thích công nghệ, luôn chủ động học hỏi các công cụ mới và biết cách ứng dụng chúng vào content và media để tạo ra những sản phẩm hấp dẫn hơn.
+          </p>
+        </div>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="section-label">Điểm nổi bật</span>
+          <h2>Một vài thứ làm mình tự hào</h2>
+          <p>
+            Mình đã chủ động tự học và phát triển các kỹ năng liên quan đến content, media và công nghệ. Bên cạnh đó, mình từng thực hiện các sản phẩm nội dung cá nhân, làm quen với các công cụ thiết kế và chỉnh sửa cơ bản, đồng thời không ngừng hoàn thiện bản thân qua từng trải nghiệm thực tế.
+          </p>
+        </div>
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <section id="journey">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="section-label">Hành trình</span>
+          <h2>Từng bước nhỏ tạo nên phiên bản tốt hơn của mình</h2>
+          <p>
+            Mình bắt đầu từ sự yêu thích với công nghệ và sự tò mò về cách nội dung có thể kết nối với mọi người. Qua quá trình học hỏi, mình dần quan tâm nhiều hơn đến content và media, từ việc lên ý tưởng, viết nội dung đến tìm hiểu cách xây dựng hình ảnh và truyền tải thông điệp. Mỗi trải nghiệm giúp mình hiểu rõ hơn điểm mạnh của bản thân và định hướng mình muốn theo đuổi trong tương lai.
+          </p>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <section id="fun">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="section-label">Khu vui vẻ</span>
+          <h2>Nhiều tính năng thú vị để website không còn “tĩnh”</h2>
+          <p>
+            Góc này có quote ngẫu nhiên, menu lệnh nhanh, hiệu ứng pháo giấy, lưu giao diện sáng/tối và bộ đếm số lần ghé thăm bằng localStorage.
+          </p>
+        </div>
+
+        <div class="fun-grid">
+          <div class="fun-card reveal">
+            <div class="stack">
+              <h3>Quote ngẫu nhiên</h3>
+              <p class="quote" id="quoteText">“Mỗi ngày là một cơ hội để trở thành phiên bản tốt hơn của chính mình.”</p>
+              <p class="muted">Bấm nút để đổi câu quote cho đúng tâm trạng hôm nay.</p>
+            </div>
+            <button class="btn btn-primary magnetic" id="quoteBtn">Đổi quote</button>
+          </div>
+
+          <div class="fun-card reveal">
+            <div class="stack">
+              <h3>Quick menu</h3>
+              <p class="muted">
+                Nhấn <strong>Ctrl + K</strong> để mở menu hành động nhanh: chuyển section, đổi giao diện, sao chép email, bật pháo giấy hoặc lưu PDF.
+              </p>
+              <ul class="mini-list">
+                <li><span>Mẹo sử dụng</span> <strong>Ctrl + K</strong></li>
+                <li><span>Đóng nhanh</span> <strong>Esc</strong></li>
+                <li><span>Tìm hành động</span> <strong>Gõ từ khóa</strong></li>
+              </ul>
+            </div>
+            <button class="btn btn-secondary magnetic" id="openMenuCardBtn">Mở quick menu</button>
+          </div>
+
+          <div class="fun-card reveal">
+            <div class="stack">
+              <h3>Bảng điều khiển mini</h3>
+              <ul class="mini-list">
+                <li><span>Giao diện hiện tại</span> <strong id="themeStateMini">Dark mode</strong></li>
+                <li><span>Lần ghé thăm</span> <strong id="visitCountMini">1</strong></li>
+                <li><span>Email</span> <strong id="emailMini">you@example.com</strong></li>
+              </ul>
+              <p class="muted">
+                Mọi thứ hoạt động ngay cả khi mở file HTML trực tiếp trên máy, không cần cài thêm thư viện.
+              </p>
+            </div>
+            <button class="btn btn-ghost magnetic" id="confettiBtn">Pháo giấy 🎉</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="library">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="section-label">Thư viện cá nhân</span>
+          <h2>Không gian lưu giữ những nội dung, video và dấu ấn cá nhân</h2>
+          <p>
+            Mục này trưng bày video, kỷ niệm, sản phẩm media hoặc tài liệu nổi bật. Có sẵn tìm kiếm, lọc danh mục, yêu thích, sao chép link và trình phát video dạng popup.
+          </p>
+        </div>
+
+        <div class="library-summary reveal">
+          <div class="library-summary-card">
+            <span>Tổng mục</span>
+            <strong id="libraryTotal">0</strong>
+          </div>
+          <div class="library-summary-card">
+            <span>Đã yêu thích</span>
+            <strong id="libraryFavCount">0</strong>
+          </div>
+          <div class="library-summary-card">
+            <span>Đang hiển thị</span>
+            <strong id="libraryVisibleCount">0</strong>
+          </div>
+        </div>
+
+        <div class="library-toolbar reveal">
+          <input class="library-search" id="librarySearch" type="search" placeholder="Tìm trong thư viện..." />
+          <select class="library-select" id="libraryFilter" aria-label="Lọc thư viện theo danh mục">
+            <option value="all">Tất cả danh mục</option>
+          </select>
+          <button class="btn btn-secondary magnetic" id="libraryResetBtn">Đặt lại</button>
+        </div>
+
+        <div class="library-grid" id="libraryGrid"></div>
+        <div class="library-empty" id="libraryEmpty">Không tìm thấy nội dung phù hợp. Hãy thử từ khóa khác nhé.</div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-shell reveal">
+          <div>
+            <h2>Chạm để kết nối với mình qua các nền tảng</h2>
+            <p id="contactText">
+              Facebook, Instagram, TikTok, GitHub, LinkedIn hoặc portfolio cá nhân.
+            </p>
+            <div class="social-grid" id="socialGrid"></div>
+          </div>
+
+          <div class="panel" style="min-width:min(100%, 280px)">
+            <div class="stack">
+              <div class="section-label">Thông tin nhanh</div>
+              <div class="mini-list">
+                <li><span>Tên hiển thị</span> <strong id="quickName">Đoàn Minh Quân</strong></li>
+                <li><span>Khu vực</span> <strong id="quickLocation">Việt Nam</strong></li>
+                <li><span>Trạng thái</span> <strong id="quickStatus">Sẵn sàng kết nối</strong></li>
+              </div>
+              <a class="btn btn-primary magnetic" id="quickMailBtn" href="mailto:you@example.com">Liên hệ ngay</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© <span id="year"></span> • <span id="footerName">Bản Quyền thuộc về Đoàn Minh Quân 12A3-K42-THPT Bỉm Sơn</span></div>
+      <div>Bản Quyền thuộc về Đoàn Minh Quân 12A3-K42-THPT Bỉm Sơn</div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backToTop" aria-label="Lên đầu trang">↑</button>
+  <div class="toast" id="toast">Đã sao chép email</div>
+
+  <div class="overlay" id="projectOverlay" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modalTitle">Chi tiết</h3>
+        <button class="close-btn" id="closeModalBtn">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="pill-row" id="modalTags"></div>
+        <p id="modalDesc"></p>
+        <div class="panel" id="modalMore"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="overlay" id="videoOverlay" aria-hidden="true">
+    <div class="video-modal">
+      <div class="modal-head">
+        <h3 id="videoModalTitle">Video</h3>
+        <button class="close-btn" id="closeVideoBtn">✕</button>
+      </div>
+      <div class="video-frame">
+        <video id="videoPlayer" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="video-info">
+        <div class="pill-row" id="videoModalTags"></div>
+        <p id="videoModalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="paletteOverlay" aria-hidden="true">
+    <div class="palette-box">
+      <div class="palette-head">
+        <div>
+          <strong>Quick menu</strong><br/>
+          <span class="hint">Gõ để tìm hành động hoặc dùng chuột để chọn</span>
+        </div>
+        <button class="close-btn" id="closePaletteBtn">Esc</button>
+      </div>
+      <div class="palette-input-wrap">
+        <input class="palette-input" id="paletteInput" type="text" placeholder="Ví dụ: giao diện, email, dự án, pháo giấy..." />
+      </div>
+      <div class="palette-list" id="paletteList"></div>
+    </div>
+  </div>
+
+  <script>
+    /*
+      ==========================
+      CHỈNH NHANH THÔNG TIN CÁ NHÂN
+      ==========================
+      Bạn chỉ cần sửa dữ liệu trong object PROFILE dưới đây.
+      Có thể thay:
+      - name, avatarText, avatarImage
+      - roles, intro, about, email, location, status
+      - stats, skills, projects, timeline
+      - socials
+    */
+
+    const PROFILE = {
+      name: "Đoàn Minh Quân",
+      avatarText: "Wuan",
+      avatarImage: "https://files.catbox.moe/mtnavn.jpg", // ví dụ: "avatar.jpg" nếu bạn đặt ảnh cùng thư mục
+      shortTitle: "Người sáng tạo nội dung • Yêu công nghệ • Thích trải nghiệm đẹp",
+      roles: [
+        "yêu thích khám phá xu hướng mới",
+        "đam mê sáng tạo nội dung số",
+        "đam mê sáng tạo nội dung số",
+        "quan tâm đến truyền thông hiện đại",
+        "thích kể chuyện bằng hình ảnh và nội dung",
+        "muốn tạo ra sản phẩm có giá trị và dấu ấn riêng",
+        "kết hợp giữa công nghệ và sáng tạo",
+        "không ngừng học hỏi và phát triển bản thân"
+      ],
+      intro: "Mình xây dựng những trải nghiệm web gọn gàng, đẹp mắt và giàu cảm xúc. Đây là một mẫu website giới thiệu bản thân hiện đại để bạn có thể thay đổi theo phong cách riêng của mình.",
+      about: "Mình là người yêu cái đẹp, thích công nghệ và luôn tò mò với những trải nghiệm số thú vị. Mình thích tạo ra những sản phẩm vừa có thẩm mỹ, vừa có tính ứng dụng cao, và luôn cố gắng học thêm điều mới mỗi ngày.",
+      location: "Việt Nam",
+      email: "wuan@minhwuan.store",
+      availability: "Sẵn sàng kết nối",
+      status: "Sẵn sàng cho cơ hội mới",
+      aboutCards: [
+        {
+          icon: "💡",
+          title: "Điểm mạnh",
+          text: "Tư duy sáng tạo, thích học nhanh, luôn cố gắng làm mọi thứ vừa đẹp vừa hiệu quả."
+        },
+        {
+          icon: "🎯",
+          title: "Mục tiêu",
+          text: "Xây dựng hình ảnh cá nhân chuyên nghiệp, thân thiện và có màu sắc riêng."
+        },
+        {
+          icon: "⚡",
+          title: "Phong cách làm việc",
+          text: "Tập trung, chủ động, thích tối ưu trải nghiệm người dùng và chi tiết nhỏ."
+        },
+        {
+          icon: "🌈",
+          title: "Điều mình thích",
+          text: "Thiết kế, chụp ảnh, nghe nhạc, đọc sách và khám phá những ý tưởng mới."
+        }
+      ],
+      stats: [
+        { value: 18, suffix: "+", label: "Dự án / sản phẩm cá nhân" },
+        { value: 42, suffix: "", label: "Ý tưởng đang ấp ủ" },
+        { value: 4, suffix: "+", label: "Năm học hỏi liên tục" },
+        { value: 365, suffix: "+", label: "Ngày yêu sáng tạo" }
+      ],
+      skills: [
+        {
+          name: "Social Media Content",
+          group: "Content Creation",
+          level: 94,
+          note: "Lên ý tưởng và xây dựng nội dung"
+        },
+        {
+          name: "Visual Design",
+          group: "Design",
+          level: 86,
+          note: "Sử dụng các công cụ như Canva, CapCut, Photoshop"
+        },
+        {
+          name: "Video Editing",
+          group: "Editing",
+          level: 88,
+          note: "Kể chuyện qua thước phim"
+        },
+        {
+          name: "Digital Tools",
+          group: "Tools",
+          level: 99,
+          note: "Ứng dụng công nghệ vào công việc"
+        }
+      ],
+      projects: [
+        {
+          type: "Website cá nhân",
+          title: "Portfolio có hiệu ứng bắt mắt",
+          desc: "Một landing page giới thiệu bản thân với thiết kế glassmorphism, nền particles, hiệu ứng chữ động và lưu trạng thái giao diện.",
+          highlights: ["Responsive", "Theme toggle", "Scroll reveal", "Hero animation"],
+          more: "Rất phù hợp nếu bạn muốn tạo ấn tượng đầu tiên mạnh mẽ với nhà tuyển dụng, khách hàng hoặc người lạ ghé thăm trang cá nhân của mình."
+        },
+        {
+          type: "Mini project",
+          title: "Tự học và ứng dụng các kỹ năng content/media",
+          desc: "Mình là người yêu thích công nghệ, đam mê sáng tạo nội dung và quan tâm đến media. Điểm nổi bật của mình là khả năng học hỏi nhanh, tư duy sáng tạo, biết nắm bắt xu hướng và luôn cố gắng tạo ra những nội dung vừa thu hút vừa có giá trị.",
+          highlights: ["Content", "Media", "Technology"],
+          more: "Mình đã chủ động tự học và phát triển các kỹ năng liên quan đến content, media và công nghệ. Bên cạnh đó, mình từng thực hiện các sản phẩm nội dung cá nhân, làm quen với các công cụ thiết kế và chỉnh sửa cơ bản, đồng thời không ngừng hoàn thiện bản thân qua từng trải nghiệm thực tế."
+        },
+        {
+          type: "Self branding",
+          title: "Kể câu chuyện cá nhân bằng timeline",
+          desc: "Timeline giúp người xem hiểu hành trình phát triển của bạn, từ những bước đầu tiên cho đến mục tiêu hiện tại.",
+          highlights: ["Storytelling", "Timeline", "Visual hierarchy"],
+          more: "Mình kể chuyện qua thước phim và ."
+        }
+      ],
+      timeline: [
+        {
+          year: "2023",
+          title: "Bắt đầu quan tâm nghiêm túc đến việc xây dựng bản thân",
+          text: "Tập trung tìm hiểu kỹ hơn về thiết kế, nội dung và cách thể hiện dấu ấn cá nhân trên môi trường số."
+        },
+        {
+          year: "2024",
+          title: "Thử sức với nhiều dự án nhỏ",
+          text: "Bắt đầu tạo những sản phẩm cá nhân đầu tiên, luyện kỹ năng trình bày và học cách kể câu chuyện của bản thân rõ ràng hơn."
+        },
+        {
+          year: "2025",
+          title: "Tăng tốc và định hình phong cách riêng",
+          text: "Hiểu hơn mình phù hợp với điều gì, muốn phát triển theo hướng nào và bắt đầu xây dựng bộ nhận diện cá nhân nhất quán."
+        },
+        {
+          year: "2026",
+          title: "Ra mắt website cá nhân chuyên nghiệp",
+          text: "Biến những gì mình học được thành một trang giới thiệu bản thân có hiệu ứng đẹp, nội dung rõ ràng và trải nghiệm thú vị."
+        }
+      ],
+      library: [
+        {
+          type: "Video cá nhân",
+          category: "Video",
+          title: "Khoảnh khắc nổi bật",
+          desc: "Video về cuộc sống quanh mình.",
+          url: "https://files.catbox.moe/2tu17i.mp4",
+          cover: "",
+          tags: ["Video", "Media", "Personal"],
+          date: "2026"
+        },
+        {
+          type: "Ghi chú",
+          category: "Ý tưởng",
+          title: "Góc lưu ý tưởng sáng tạo",
+          desc: "ý tưởng nội dung, concept video, kế hoạch media những điều mình muốn phát triển trong tương lai.",
+          url: "",
+          cover: "",
+          tags: ["Idea", "Content", "Planning"],
+          date: "Future"
+        },
+        {
+          type: "Bộ sưu tập",
+          category: "Kỷ niệm",
+          title: "Dấu ấn cá nhân",
+          desc: "Kỉ niệm đáng nhớ tuổi học trò.",
+          url: "https://minhwuan.store/vid.mp4",
+          cover: "",
+          tags: ["Memory", "Story", "Branding"],
+          date: "Now"
+        }
+      ],
+      quotes: [
+        "Mỗi ngày là một cơ hội để trở thành phiên bản tốt hơn của chính mình.",
+        "Sự khác biệt nằm ở cách bạn kể câu chuyện của mình.",
+        "Đẹp thôi chưa đủ, trải nghiệm mới là điều khiến người ta nhớ lâu.",
+        "Một ý tưởng tốt xứng đáng có một giao diện thật xứng tầm.",
+        "Kiên trì là hiệu ứng đẹp nhất của quá trình trưởng thành."
+      ],
+      socials: [
+        { icon: "📘", name: "Facebook", desc: "Chia sẻ đời sống & công việc", url: "https://facebook.com/hacker.see.tinh" },
+        { icon: "📸", name: "Instagram", desc: "Hình ảnh & cảm hứng", url: "https://instagram.com/_mwuandz_" },
+        { icon: "🎵", name: "TikTok", desc: "Video ngắn & cá tính", url: "https://tiktok.com/mwuandz" },
+        { icon: "💛", name: "Locket", desc: "Chia sẻ đời sống thường ngày", url: "https://linkedin.com/" },
+        { icon: "🐙", name: "GitHub", desc: "Code & side projects", url: "https://github.com/mwuandz" },
+        { icon: "✉️", name: "Email", desc: "Liên hệ trực tiếp", url: "mailto:minhwuan.store@minhwuan.store" }
+      ]
+    };
+
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+    function setText(id, value){
+      const el = document.getElementById(id);
+      if(el) el.textContent = value;
+    }
+
+    function populateProfile(){
+      setText("brandName", PROFILE.name);
+      setText("heroName", PROFILE.name);
+      setText("cardName", PROFILE.name);
+      setText("cardTitle", PROFILE.shortTitle);
+      setText("heroIntro", PROFILE.intro);
+      setText("aboutText", PROFILE.about);
+      setText("locationChip", `📍 ${PROFILE.location}`);
+      setText("emailChip", `✉️ ${PROFILE.email}`);
+      setText("availabilityChip", `🟢 ${PROFILE.availability}`);
+      setText("statusPill", PROFILE.status);
+      setText("quickName", PROFILE.name);
+      setText("quickLocation", PROFILE.location);
+      setText("quickStatus", PROFILE.availability);
+      setText("footerName", PROFILE.name);
+      setText("emailMini", PROFILE.email);
+
+      const avatar = document.getElementById("avatar");
+      if(PROFILE.avatarImage){
+        avatar.style.backgroundImage = `url('${PROFILE.avatarImage}')`;
+        avatar.textContent = "";
+      }else{
+        avatar.textContent = PROFILE.avatarText;
+      }
+
+      const mailTargets = ["mailButton", "quickMailBtn"];
+      mailTargets.forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.href = `mailto:${PROFILE.email}`;
+      });
+
+      renderAboutCards();
+      renderStats();
+      renderSkills();
+      renderProjects();
+      renderTimeline();
+      renderLibrary();
+      renderSocials();
+      changeQuote(true);
+    }
+
+    function renderAboutCards(){
+      const grid = $("#aboutGrid");
+      grid.innerHTML = PROFILE.aboutCards.map(card => `
+        <article class="info-card reveal tilt">
+          <div class="icon">${card.icon}</div>
+          <h3>${card.title}</h3>
+          <p>${card.text}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderStats(){
+      const grid = $("#statsGrid");
+      grid.innerHTML = PROFILE.stats.map(item => `
+        <article class="stat-card reveal">
+          <div class="stat-value" data-target="${item.value}" data-suffix="${item.suffix}">0${item.suffix}</div>
+          <div class="stat-label">${item.label}</div>
+        </article>
+      `).join("");
+    }
+
+    function renderSkills(){
+      const grid = $("#skillsGrid");
+      grid.innerHTML = PROFILE.skills.map(skill => `
+        <article class="skill-card reveal tilt">
+          <div class="skill-card-top">
+            <div>
+              <h3>${skill.name}</h3>
+              <small>${skill.note}</small>
+            </div>
+            <span class="tag">${skill.group}</span>
+          </div>
+          <div class="bar"><i style="--level:${skill.level}%"></i></div>
+          <div class="skill-foot">
+            <span>Mức độ tự tin</span>
+            <strong>${skill.level}%</strong>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderProjects(){
+      const grid = $("#projectsGrid");
+      grid.innerHTML = PROFILE.projects.map((project, index) => `
+        <article class="project-card reveal tilt">
+          <div class="project-head">
+            <div class="project-type">✨ ${project.type}</div>
+            <span class="tag">0${index + 1}</span>
+          </div>
+          <div class="stack">
+            <h3>${project.title}</h3>
+            <p>${project.desc}</p>
+          </div>
+          <div class="pill-row">
+            ${project.highlights.map(tag => `<span class="pill">${tag}</span>`).join("")}
+          </div>
+          <button class="btn btn-secondary magnetic open-project" data-index="${index}">Xem chi tiết</button>
+        </article>
+      `).join("");
+    }
+
+    function renderTimeline(){
+      const timeline = $("#timeline");
+      timeline.innerHTML = PROFILE.timeline.map(item => `
+        <article class="timeline-item reveal tilt">
+          <span class="timeline-year">${item.year}</span>
+          <h3>${item.title}</h3>
+          <p>${item.text}</p>
+        </article>
+      `).join("");
+    }
+
+
+    function getLibraryFavs(){
+      try{
+        return JSON.parse(localStorage.getItem("personal-library-favs") || "[]");
+      }catch(err){
+        return [];
+      }
+    }
+
+    function setLibraryFavs(favs){
+      localStorage.setItem("personal-library-favs", JSON.stringify(favs));
+    }
+
+    function renderLibrary(){
+      const grid = $("#libraryGrid");
+      const filter = $("#libraryFilter");
+      if(!grid || !filter) return;
+
+      const categories = ["all", ...new Set(PROFILE.library.map(item => item.category))];
+      filter.innerHTML = categories.map(cat => `
+        <option value="${cat}">${cat === "all" ? "Tất cả danh mục" : cat}</option>
+      `).join("");
+
+      updateLibrary();
+    }
+
+    function updateLibrary(){
+      const grid = $("#libraryGrid");
+      const empty = $("#libraryEmpty");
+      const search = ($("#librarySearch")?.value || "").trim().toLowerCase();
+      const filter = $("#libraryFilter")?.value || "all";
+      const favs = getLibraryFavs();
+
+      const items = PROFILE.library.filter(item => {
+        const haystack = `${item.title} ${item.desc} ${item.type} ${item.category} ${item.tags.join(" ")}`.toLowerCase();
+        const matchSearch = !search || haystack.includes(search);
+        const matchFilter = filter === "all" || item.category === filter;
+        return matchSearch && matchFilter;
+      });
+
+      setText("libraryTotal", PROFILE.library.length);
+      setText("libraryFavCount", favs.length);
+      setText("libraryVisibleCount", items.length);
+
+      grid.innerHTML = items.map(item => {
+        const index = PROFILE.library.indexOf(item);
+        const isFav = favs.includes(index);
+        const hasVideo = Boolean(item.url);
+        return `
+          <article class="library-card reveal tilt" data-index="${index}">
+            <div class="library-thumb">
+              ${hasVideo ? `<video src="${item.url}" muted playsinline preload="metadata"></video>` : `<div class="library-play" style="pointer-events:none">✦</div>`}
+              ${hasVideo ? `<button class="library-play open-video" data-index="${index}" aria-label="Phát video">▶</button>` : ""}
+              <div class="library-badge-row">
+                <span class="library-badge">${item.type}</span>
+                <span class="library-badge">${item.date}</span>
+              </div>
+            </div>
+            <div class="library-body">
+              <div>
+                <div class="project-type">✦ ${item.category}</div>
+                <h3>${item.title}</h3>
+              </div>
+              <p>${item.desc}</p>
+              <div class="library-meta">
+                ${item.tags.map(tag => `<span class="pill">${tag}</span>`).join("")}
+              </div>
+              <div class="library-actions">
+                ${hasVideo ? `<button class="btn btn-primary magnetic open-video" data-index="${index}">Xem video</button>` : `<button class="btn btn-primary magnetic" disabled>Đang cập nhật</button>`}
+                <button class="btn btn-secondary magnetic fav-library" data-index="${index}">${isFav ? "Đã thích ♥" : "Yêu thích ♡"}</button>
+                ${hasVideo ? `<button class="btn btn-ghost magnetic copy-library" data-index="${index}">Copy link</button>` : `<button class="btn btn-ghost magnetic" disabled>Chưa có link</button>`}
+                ${hasVideo ? `<a class="btn btn-secondary magnetic" href="${item.url}" target="_blank" rel="noreferrer">Mở link</a>` : `<button class="btn btn-secondary magnetic" disabled>Mở link</button>`}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      empty.classList.toggle("show", items.length === 0);
+      observeNewLibraryCards();
+      initMagnetic();
+      initTilt();
+    }
+
+    function observeNewLibraryCards(){
+      const cards = $$("#libraryGrid .reveal:not(.in-view)");
+      if(!cards.length) return;
+      cards.forEach(card => requestAnimationFrame(() => card.classList.add("in-view")));
+    }
+
+    function initLibrary(){
+      const search = $("#librarySearch");
+      const filter = $("#libraryFilter");
+      const reset = $("#libraryResetBtn");
+      if(!search || !filter || !reset) return;
+
+      search.addEventListener("input", updateLibrary);
+      filter.addEventListener("change", updateLibrary);
+      reset.addEventListener("click", () => {
+        search.value = "";
+        filter.value = "all";
+        updateLibrary();
+        showToast("Đã đặt lại bộ lọc thư viện");
+      });
+
+      document.addEventListener("click", async e => {
+        const favBtn = e.target.closest(".fav-library");
+        if(favBtn){
+          const index = Number(favBtn.dataset.index);
+          const favs = getLibraryFavs();
+          const next = favs.includes(index) ? favs.filter(i => i !== index) : [...favs, index];
+          setLibraryFavs(next);
+          updateLibrary();
+          showToast(next.includes(index) ? "Đã thêm vào yêu thích" : "Đã bỏ yêu thích");
+        }
+
+        const copyBtn = e.target.closest(".copy-library");
+        if(copyBtn){
+          const item = PROFILE.library[Number(copyBtn.dataset.index)];
+          const ok = await copyText(item.url);
+          showToast(ok ? "Đã sao chép link video" : "Không thể sao chép link");
+        }
+
+        const openBtn = e.target.closest(".open-video");
+        if(openBtn){
+          openVideo(Number(openBtn.dataset.index));
+        }
+      });
+    }
+
+    function initVideoModal(){
+      const overlay = $("#videoOverlay");
+      const player = $("#videoPlayer");
+      if(!overlay || !player) return;
+
+      function closeVideo(){
+        player.pause();
+        player.removeAttribute("src");
+        player.load();
+        overlay.classList.remove("show");
+        overlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      $("#closeVideoBtn").addEventListener("click", closeVideo);
+      overlay.addEventListener("click", e => {
+        if(e.target === overlay) closeVideo();
+      });
+      document.addEventListener("keydown", e => {
+        if(e.key === "Escape" && overlay.classList.contains("show")) closeVideo();
+      });
+
+      window.openVideo = function(index){
+        const item = PROFILE.library[index];
+        if(!item || !item.url) return;
+        setText("videoModalTitle", item.title);
+        setText("videoModalDesc", item.desc);
+        $("#videoModalTags").innerHTML = item.tags.map(tag => `<span class="pill">${tag}</span>`).join("");
+        player.src = item.url;
+        overlay.classList.add("show");
+        overlay.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => player.play().catch(() => {}), 120);
+      }
+    }
+
+
+    function renderSocials(){
+      const grid = $("#socialGrid");
+      grid.innerHTML = PROFILE.socials.map(item => `
+        <a class="social reveal magnetic" href="${item.url}" target="_blank" rel="noreferrer">
+          <div class="icon">${item.icon}</div>
+          <div>
+            <strong>${item.name}</strong>
+            <small>${item.desc}</small>
+          </div>
+        </a>
+      `).join("");
+    }
+
+    let quoteIndex = 0;
+    function changeQuote(first = false){
+      const nextIndex = first
+        ? Math.floor(Math.random() * PROFILE.quotes.length)
+        : (quoteIndex + 1 + Math.floor(Math.random() * (PROFILE.quotes.length - 1))) % PROFILE.quotes.length;
+      quoteIndex = nextIndex;
+      setText("quoteText", `“${PROFILE.quotes[quoteIndex]}”`);
+    }
+
+    function startTyping(){
+      const el = $("#typedText");
+      const words = PROFILE.roles;
+      let wordIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+
+      function tick(){
+        const word = words[wordIndex];
+        if(!deleting){
+          charIndex++;
+          el.textContent = word.slice(0, charIndex);
+          if(charIndex === word.length){
+            deleting = true;
+            setTimeout(tick, 1300);
+            return;
+          }
+        }else{
+          charIndex--;
+          el.textContent = word.slice(0, charIndex);
+          if(charIndex === 0){
+            deleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+          }
+        }
+        setTimeout(tick, deleting ? 34 : 62);
+      }
+      tick();
+    }
+
+    function initClock(){
+      const clock = $("#liveClock");
+      function updateClock(){
+        const now = new Date();
+        const time = new Intl.DateTimeFormat("vi-VN", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        }).format(now);
+        clock.textContent = time;
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
+
+    function initVisits(){
+      const key = "personal-site-visit-count";
+      const next = String((Number(localStorage.getItem(key) || "0") + 1));
+      localStorage.setItem(key, next);
+      setText("visitCount", next);
+      setText("visitCountMini", next);
+    }
+
+    function updateThemeText(theme){
+      const text = theme === "light" ? "Light mode" : "Dark mode";
+      setText("themeState", text);
+      setText("themeStateMini", text);
+      $("#themeToggle").textContent = theme === "light" ? "☀️" : "🌙";
+      document.querySelector('meta[name="theme-color"]').setAttribute("content", theme === "light" ? "#f3f7ff" : "#0b1020");
+    }
+
+    function applyTheme(theme){
+      document.body.dataset.theme = theme;
+      localStorage.setItem("personal-site-theme", theme);
+      updateThemeText(theme);
+    }
+
+    function toggleTheme(){
+      const next = document.body.dataset.theme === "light" ? "dark" : "light";
+      applyTheme(next);
+      showToast(`Đã chuyển sang ${next === "light" ? "Light mode" : "Dark mode"}`);
+    }
+
+    function initTheme(){
+      const theme = localStorage.getItem("personal-site-theme") || "dark";
+      applyTheme(theme);
+      $("#themeToggle").addEventListener("click", toggleTheme);
+    }
+
+    function initProgressAndNav(){
+      const progress = $("#progress");
+      const links = $$(".nav-link");
+      const sections = $$("main section");
+
+      function onScroll(){
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        const value = total > 0 ? (window.scrollY / total) * 100 : 0;
+        progress.style.width = `${value}%`;
+
+        const scrollPoint = window.scrollY + window.innerHeight * 0.35;
+        sections.forEach(sec => {
+          const active = scrollPoint >= sec.offsetTop && scrollPoint < sec.offsetTop + sec.offsetHeight;
+          if(active){
+            links.forEach(link => link.classList.toggle("active", link.getAttribute("href") === `#${sec.id}`));
+          }
+        });
+
+        $("#backToTop").classList.toggle("show", window.scrollY > 520);
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    function initBackTop(){
+      $("#backToTop").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    function observeReveal(){
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add("in-view");
+            if(entry.target.matches(".stat-card")) animateStat(entry.target);
+            if(entry.target.matches(".skill-card")) {
+              const fill = entry.target.querySelector(".bar > i");
+              if(fill) fill.style.width = fill.style.getPropertyValue("--level") || fill.getAttribute("style").match(/--level:([^;]+)/)?.[1] || "0%";
+            }
+          }
+        });
+      }, { threshold: 0.14 });
+
+      $$(".reveal, .stat-card, .skill-card").forEach(el => observer.observe(el));
+    }
+
+    function animateStat(card){
+      if(card.dataset.done) return;
+      card.dataset.done = "1";
+      const valueEl = card.querySelector(".stat-value");
+      const target = Number(valueEl.dataset.target || 0);
+      const suffix = valueEl.dataset.suffix || "";
+      const duration = 1200;
+      const start = performance.now();
+
+      function frame(now){
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        valueEl.textContent = `${Math.round(target * eased)}${suffix}`;
+        if(progress < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function initSpotlight(){
+      const spot = $("#spotlight");
+      const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+      if(isCoarse){
+        spot.style.display = "none";
+        return;
+      }
+      window.addEventListener("pointermove", e => {
+        spot.style.left = `${e.clientX}px`;
+        spot.style.top = `${e.clientY}px`;
+      }, { passive: true });
+    }
+
+    function initMagnetic(){
+      $$(".magnetic").forEach(el => {
+        el.addEventListener("mousemove", e => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          el.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
+        });
+        el.addEventListener("mouseleave", () => {
+          el.style.transform = "";
+        });
+      });
+    }
+
+    function initTilt(){
+      $$(".tilt").forEach(card => {
+        card.addEventListener("mousemove", e => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          const rx = (0.5 - y) * 9;
+          const ry = (x - 0.5) * 9;
+          card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
+      });
+    }
+
+    function showToast(message){
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    async function copyText(text){
+      try{
+        if(navigator.clipboard && window.isSecureContext){
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      }catch(err){}
+      try{
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.focus();
+        area.select();
+        document.execCommand("copy");
+        area.remove();
+        return true;
+      }catch(err){
+        return false;
+      }
+    }
+
+    function initCopyEmail(){
+      $("#copyEmailBtn").addEventListener("click", async () => {
+        const ok = await copyText(PROFILE.email);
+        showToast(ok ? "Đã sao chép email" : "Không thể sao chép email");
+      });
+    }
+
+    function launchConfetti(){
+      const colors = ["#7c5cff", "#00d5ff", "#ff7bc6", "#8ef1c3", "#ffd36a"];
+      for(let i = 0; i < 80; i++){
+        const piece = document.createElement("span");
+        piece.className = "confetti";
+        piece.style.setProperty("--size", `${6 + Math.random() * 9}px`);
+        piece.style.setProperty("--x", `${(Math.random() - 0.5) * 110}vw`);
+        piece.style.setProperty("--y", `${55 + Math.random() * 45}vh`);
+        piece.style.setProperty("--rot", `${(Math.random() - 0.5) * 1080}deg`);
+        piece.style.setProperty("--duration", `${1200 + Math.random() * 1400}ms`);
+        piece.style.setProperty("--color", colors[Math.floor(Math.random() * colors.length)]);
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 2800);
+      }
+      showToast("Boom! Website vừa được tăng thêm 10 điểm vui vẻ 🎉");
+    }
+
+    function initProjectModal(){
+      const overlay = $("#projectOverlay");
+      const title = $("#modalTitle");
+      const desc = $("#modalDesc");
+      const tags = $("#modalTags");
+      const more = $("#modalMore");
+
+      function openProject(index){
+        const project = PROFILE.projects[index];
+        title.textContent = project.title;
+        desc.textContent = project.desc;
+        tags.innerHTML = project.highlights.map(tag => `<span class="pill">${tag}</span>`).join("");
+        more.innerHTML = `<strong>${project.type}</strong><p style="margin-top:10px">${project.more}</p>`;
+        overlay.classList.add("show");
+        overlay.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeProject(){
+        overlay.classList.remove("show");
+        overlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      document.addEventListener("click", e => {
+        const btn = e.target.closest(".open-project");
+        if(btn){
+          openProject(Number(btn.dataset.index));
+        }
+      });
+
+      $("#closeModalBtn").addEventListener("click", closeProject);
+      overlay.addEventListener("click", e => {
+        if(e.target === overlay) closeProject();
+      });
+
+      document.addEventListener("keydown", e => {
+        if(e.key === "Escape" && overlay.classList.contains("show")) closeProject();
+      });
+    }
+
+    function initPalette(){
+      const overlay = $("#paletteOverlay");
+      const input = $("#paletteInput");
+      const list = $("#paletteList");
+
+      const actions = [
+        { label: "Đi tới Trang chủ", hint: "#home", keys: "home trang chu", run: () => jump("#home") },
+        { label: "Đi tới Giới thiệu", hint: "#about", keys: "about gioi thieu", run: () => jump("#about") },
+        { label: "Đi tới Kỹ năng", hint: "#skills", keys: "skills ky nang", run: () => jump("#skills") },
+        { label: "Đi tới Dự án", hint: "#projects", keys: "projects du an", run: () => jump("#projects") },
+        { label: "Đi tới Hành trình", hint: "#journey", keys: "journey hanh trinh", run: () => jump("#journey") },
+        { label: "Đi tới Thư viện", hint: "#library", keys: "library thu vien video ca nhan", run: () => jump("#library") },
+        { label: "Đi tới Liên hệ", hint: "#contact", keys: "contact lien he", run: () => jump("#contact") },
+        { label: "Đổi giao diện sáng / tối", hint: "toggle theme", keys: "theme giao dien sang toi dark light", run: toggleTheme },
+        { label: "Sao chép email", hint: PROFILE.email, keys: "copy email sao chep", run: async () => {
+          const ok = await copyText(PROFILE.email);
+          showToast(ok ? "Đã sao chép email" : "Không thể sao chép email");
+        }},
+        { label: "Bật pháo giấy", hint: "confetti", keys: "phao giay confetti surprise", run: launchConfetti },
+        { label: "Lưu website thành PDF", hint: "print", keys: "pdf print luu in", run: () => window.print() }
+      ];
+
+      function render(query = ""){
+        const q = query.trim().toLowerCase();
+        const filtered = actions.filter(action => !q || `${action.label} ${action.hint} ${action.keys}`.toLowerCase().includes(q));
+        list.innerHTML = filtered.map((action, index) => `
+          <button class="palette-item ${index === 0 ? "active" : ""}" data-index="${actions.indexOf(action)}">
+            <div>
+              <strong>${action.label}</strong>
+              <small>${action.hint}</small>
+            </div>
+            <span class="kbd">Enter</span>
+          </button>
+        `).join("") || `<div class="panel"><p class="muted">Không tìm thấy hành động phù hợp.</p></div>`;
+      }
+
+      function openPalette(){
+        overlay.classList.add("show");
+        overlay.setAttribute("aria-hidden", "false");
+        input.value = "";
+        render();
+        setTimeout(() => input.focus(), 20);
+        document.body.style.overflow = "hidden";
+      }
+
+      function closePalette(){
+        overlay.classList.remove("show");
+        overlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function runFirst(){
+        const first = $(".palette-item", list);
+        if(first){
+          const action = actions[Number(first.dataset.index)];
+          closePalette();
+          Promise.resolve(action.run()).catch(() => {});
+        }
+      }
+
+      $("#openPaletteBtn").addEventListener("click", openPalette);
+      $("#openMenuCardBtn").addEventListener("click", openPalette);
+      $("#closePaletteBtn").addEventListener("click", closePalette);
+
+      overlay.addEventListener("click", e => {
+        if(e.target === overlay) closePalette();
+      });
+
+      list.addEventListener("click", e => {
+        const item = e.target.closest(".palette-item");
+        if(!item) return;
+        const action = actions[Number(item.dataset.index)];
+        closePalette();
+        Promise.resolve(action.run()).catch(() => {});
+      });
+
+      input.addEventListener("input", () => render(input.value));
+      input.addEventListener("keydown", e => {
+        if(e.key === "Enter") runFirst();
+      });
+
+      document.addEventListener("keydown", e => {
+        if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k"){
+          e.preventDefault();
+          if(overlay.classList.contains("show")) closePalette();
+          else openPalette();
+        }
+        if(e.key === "Escape" && overlay.classList.contains("show")){
+          closePalette();
+        }
+      });
+    }
+
+    function jump(hash){
+      const el = document.querySelector(hash);
+      if(el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function initQuote(){
+      $("#quoteBtn").addEventListener("click", () => changeQuote(false));
+    }
+
+    function initPrint(){
+      $("#printBtn").addEventListener("click", () => window.print());
+    }
+
+    function initSurprise(){
+      $("#surpriseBtn").addEventListener("click", launchConfetti);
+      $("#confettiBtn").addEventListener("click", launchConfetti);
+    }
+
+    function initParticles(){
+      const canvas = $("#particles");
+      const ctx = canvas.getContext("2d");
+      let w, h, particles;
+      let mouse = { x: null, y: null, radius: 120 };
+
+      function resize(){
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = canvas.width = innerWidth * dpr;
+        h = canvas.height = innerHeight * dpr;
+        canvas.style.width = innerWidth + "px";
+        canvas.style.height = innerHeight + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        createParticles();
+      }
+
+      function createParticles(){
+        const count = Math.min(72, Math.max(36, Math.floor(innerWidth / 18)));
+        particles = Array.from({ length: count }, () => ({
+          x: Math.random() * innerWidth,
+          y: Math.random() * innerHeight,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          r: Math.random() * 2.2 + 0.8
+        }));
+      }
+
+      function draw(){
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        for(let i = 0; i < particles.length; i++){
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if(p.x < 0 || p.x > innerWidth) p.vx *= -1;
+          if(p.y < 0 || p.y > innerHeight) p.vy *= -1;
+
+          if(mouse.x !== null){
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const dist = Math.hypot(dx, dy);
+            if(dist < mouse.radius){
+              const force = (mouse.radius - dist) / mouse.radius;
+              p.x += (dx / (dist || 1)) * force * 1.8;
+              p.y += (dy / (dist || 1)) * force * 1.8;
+            }
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = document.body.dataset.theme === "light"
+            ? "rgba(80,95,140,.42)"
+            : "rgba(240,245,255,.52)";
+          ctx.fill();
+
+          for(let j = i + 1; j < particles.length; j++){
+            const q = particles[j];
+            const dx = p.x - q.x;
+            const dy = p.y - q.y;
+            const dist = Math.hypot(dx, dy);
+            if(dist < 120){
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = document.body.dataset.theme === "light"
+                ? `rgba(100,120,170,${0.14 * (1 - dist / 120)})`
+                : `rgba(214,226,255,${0.18 * (1 - dist / 120)})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener("resize", resize);
+      window.addEventListener("pointermove", e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      }, { passive: true });
+      window.addEventListener("pointerleave", () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      resize();
+      draw();
+    }
+
+    function initPreloader(){
+      const preloader = $("#preloader");
+      window.addEventListener("load", () => {
+        setTimeout(() => preloader.classList.add("hidden"), 650);
+      });
+    }
+
+    function initYear(){
+      setText("year", new Date().getFullYear());
+    }
+
+    function initButtons(){
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener("click", e => {
+          const id = link.getAttribute("href");
+          if(id.length > 1){
+            e.preventDefault();
+            jump(id);
+          }
+        });
+      });
+    }
+
+    function boot(){
+      populateProfile();
+      initTheme();
+      initClock();
+      initVisits();
+      initYear();
+      initButtons();
+      initProgressAndNav();
+      initBackTop();
+      initSpotlight();
+      initCopyEmail();
+      initProjectModal();
+      initVideoModal();
+      initLibrary();
+      initPalette();
+      initQuote();
+      initPrint();
+      initSurprise();
+      initParticles();
+      observeReveal();
+      initMagnetic();
+      initTilt();
+      startTyping();
+      initPreloader();
+    }
+
+    boot();
+  </script>
+</body>
+</html>
