@@ -137,6 +137,9 @@
       backdrop-filter:blur(12px);
       transition:opacity .65s ease, visibility .65s ease;
     }
+    body[data-theme="light"] .preloader{
+      background:rgba(243,247,255,.88);
+    }
     .preloader.hidden{opacity:0;visibility:hidden}
     .preloader-inner{
       text-align:center;
@@ -163,13 +166,8 @@
       text-transform:uppercase;
       font-size:.88rem;
     }
-
-    body[data-theme="light"] .preloader{
-      background:rgba(243,247,255,.88);
-    }
-
     body[data-theme="light"] .preloader-text{
-      color:var(--muted);
+      color:#51607d;
     }
 
     @keyframes pulse{
@@ -1733,7 +1731,7 @@
       </nav>
 
       <div class="nav-actions">
-        <button class="icon-btn" id="themeToggle" aria-label="Đổi giao diện">🌙</button>
+        <button class="icon-btn" id="themeToggle" aria-label="Đổi giao diện">☀️</button>
         <button class="cmd-btn" id="openPaletteBtn">
           <span>⌘</span>
           <span class="label hide-mobile">Quick menu</span>
@@ -1805,7 +1803,7 @@
             </div>
             <div class="widget">
               <span>Chế độ hiển thị</span>
-              <strong id="themeState">Dark mode</strong>
+              <strong id="themeState">Light mode</strong>
             </div>
             <div class="widget">
               <span>Điểm nhấn</span>
@@ -1930,7 +1928,7 @@
             <div class="stack">
               <h3>Bảng điều khiển mini</h3>
               <ul class="mini-list">
-                <li><span>Giao diện hiện tại</span> <strong id="themeStateMini">Dark mode</strong></li>
+                <li><span>Giao diện hiện tại</span> <strong id="themeStateMini">Light mode</strong></li>
                 <li><span>Lần ghé thăm</span> <strong id="visitCountMini">1</strong></li>
                 <li><span>Email</span> <strong id="emailMini">you@example.com</strong></li>
               </ul>
@@ -2633,7 +2631,7 @@
     }
 
     function initTheme(){
-      const theme = localStorage.getItem("personal-site-theme") || "light";
+      const theme = "light";
       applyTheme(theme);
       $("#themeToggle").addEventListener("click", toggleTheme);
     }
