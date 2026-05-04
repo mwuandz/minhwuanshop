@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Minh Wuan Store</title>
+<style>
+:root{--bg:#f7fbff;--card:#fff;--text:#10223e;--muted:#667892;--line:rgba(15,23,42,.1);--primary:#0068ff;--cyan:#36c8ff;--pink:#ec4899;--green:#10b981;--shadow:0 18px 50px rgba(39,77,146,.13);--r:24px}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 0 0,rgba(54,200,255,.18),transparent 30rem),radial-gradient(circle at 100% 0,rgba(236,72,153,.12),transparent 26rem),linear-gradient(180deg,#f7fbff,#fff8fc)}a{text-decoration:none;color:inherit}.container{width:min(1160px,calc(100% - 32px));margin:auto}.top{background:linear-gradient(90deg,rgba(0,104,255,.1),rgba(245,158,11,.1),rgba(236,72,153,.1));font-weight:900;color:#12365f;border-bottom:1px solid var(--line)}.top .container{min-height:42px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px}.nav{position:sticky;top:0;z-index:20;background:rgba(247,251,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.navin{height:74px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-weight:950}.logo{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--primary),var(--cyan),#7c3aed);display:grid;place-items:center;color:#fff;box-shadow:0 14px 34px rgba(0,104,255,.24)}.brand small{display:block;color:var(--muted);font-weight:700}.links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.links a{padding:10px 12px;border-radius:999px;color:var(--muted);font-weight:800}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;min-height:46px;padding:12px 18px;font-weight:950;cursor:pointer}.btn-primary{background:linear-gradient(135deg,var(--primary),var(--cyan));color:#fff;box-shadow:0 16px 34px rgba(0,104,255,.24)}.btn-soft{background:rgba(0,104,255,.07);color:var(--primary);border:1px solid rgba(0,104,255,.12)}.hero{padding:68px 0 38px}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}.badge{display:inline-flex;border:1px solid rgba(0,104,255,.15);background:rgba(0,104,255,.07);color:var(--primary);font-weight:950;border-radius:999px;padding:8px 13px;margin-bottom:18px}.hero h1{font-size:clamp(40px,6vw,74px);line-height:.96;letter-spacing:-.06em;margin:0}.hero h1 span{display:block;background:linear-gradient(90deg,var(--primary),var(--cyan),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{color:var(--muted);font-size:18px;line-height:1.7;max-width:650px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.hero-card,.promise{background:linear-gradient(180deg,#fff,rgba(244,249,255,.96));border:1px solid var(--line);border-radius:32px;box-shadow:var(--shadow);padding:22px}.mini{display:grid;gap:12px}.mini a{background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:20px;padding:14px;display:grid;gap:6px}.mini b:last-child{color:var(--primary);font-size:20px}.section{padding:44px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:20px}.section h2{font-size:clamp(30px,4vw,46px);letter-spacing:-.055em;margin:0}.subtitle{color:var(--muted);line-height:1.6}.search{position:relative;min-width:min(100%,340px)}.search input{width:100%;height:50px;border-radius:999px;border:1px solid var(--line);padding:0 18px 0 44px;font:inherit;font-weight:800;background:#fff;box-shadow:var(--shadow)}.search span{position:absolute;left:16px;top:50%;transform:translateY(-50%)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;min-height:100%}.visual{height:124px;border-radius:22px;background:linear-gradient(135deg,rgba(0,104,255,.08),rgba(54,200,255,.09),rgba(236,72,153,.07));display:grid;place-items:center;margin-bottom:16px}.visual img{width:56px;height:56px;border-radius:16px;background:#fff;box-shadow:0 14px 24px rgba(39,77,146,.14)}.tag{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(16,185,129,.08);color:#0d8f64;font-size:12px;font-weight:950;border:1px solid rgba(16,185,129,.15);white-space:nowrap}.card-top{display:flex;align-items:start;justify-content:space-between;gap:12px}.card h3{font-size:22px;letter-spacing:-.035em;margin:0}.desc{color:var(--muted);font-size:14px;line-height:1.6}.prices{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:10px}.prices li{display:flex;justify-content:space-between;gap:14px;border-bottom:1px dashed var(--line);padding-bottom:10px}.prices b{color:var(--primary);white-space:nowrap}.card .btn{width:100%;margin-top:auto}.commit{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.commit div{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px}.float{position:fixed;right:18px;bottom:18px;z-index:30}.modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(15,23,42,.25);backdrop-filter:blur(10px);z-index:50;padding:20px}.modal.show{display:grid}.modal-card{width:min(560px,100%);background:linear-gradient(180deg,#fff,#f4f9ff);border:1px solid var(--line);border-radius:30px;box-shadow:0 30px 90px rgba(39,77,146,.22);padding:26px;position:relative}.close{position:absolute;right:14px;top:14px;border:1px solid var(--line);background:rgba(0,104,255,.06);color:var(--primary);border-radius:999px;width:42px;height:42px;font-size:22px;cursor:pointer}.empty{display:none;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;text-align:center}.empty.show{display:block}@media(max-width:920px){.hero-grid,.grid,.commit{grid-template-columns:1fr 1fr}.hero-copy,.hero-card{grid-column:1/-1}}@media(max-width:700px){.hero-grid,.grid,.commit{grid-template-columns:1fr}.links a:not(.buy){display:none}.navin{height:auto;padding:14px 0;align-items:flex-start;flex-direction:column}.section-head{align-items:stretch;flex-direction:column}.float{left:16px;right:16px}.float .btn{width:100%}}
+
+
+/* ===== Minh Wuan Store Motion Pack ===== */
+html { scroll-behavior: smooth; }
+body {
+  background-size: 180% 180%;
+  animation: mwSoftGradient 16s ease infinite;
+}
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  width: 360px;
+  height: 360px;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(18px);
+  opacity: .55;
+  animation: mwOrbFloat 12s ease-in-out infinite;
+}
+body::before {
+  left: -120px;
+  top: 140px;
+  background: radial-gradient(circle, rgba(0,104,255,.16), transparent 64%);
+}
+body::after {
+  right: -130px;
+  top: 58%;
+  background: radial-gradient(circle, rgba(236,72,153,.14), transparent 64%);
+  animation-delay: -5s;
+}
+.btn-primary, .float .btn {
+  position: relative;
+  overflow: hidden;
+  animation: mwGlowPulse 2.4s ease-in-out infinite;
+}
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
+  animation: mwButtonShine 3.4s ease-in-out infinite;
+}
+.logo {
+  animation: mwLogoBob 4s ease-in-out infinite;
+}
+.hero-copy, .hero-card {
+  animation: mwHeroIn .85s cubic-bezier(.2,.8,.2,1) both;
+}
+.hero-card { animation-delay: .12s; }
+.hero h1 span {
+  background-size: 220% 100%;
+  animation: mwTextGradient 4s ease-in-out infinite;
+}
+.visual {
+  position: relative;
+  overflow: hidden;
+  animation: mwFloat 4.8s ease-in-out infinite;
+}
+.visual::after {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background: conic-gradient(from 180deg, transparent, rgba(255,255,255,.6), transparent 35%);
+  animation: mwRotate 7s linear infinite;
+}
+.visual img { position: relative; z-index: 1; transition: transform .28s ease; }
+.card:hover .visual img { transform: scale(1.08) rotate(-4deg); }
+.card, .hero-card, .promise, .commit div, .mini a, .section-head {
+  will-change: transform, opacity;
+}
+.card {
+  transform-style: preserve-3d;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.card:hover {
+  border-color: rgba(0,104,255,.22);
+  box-shadow: 0 26px 60px rgba(39,77,146,.18);
+}
+.prices b, .mini b:last-child {
+  background: linear-gradient(90deg, var(--primary), var(--cyan), var(--pink), var(--primary));
+  background-size: 230% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  animation: mwPriceShimmer 3.2s linear infinite;
+}
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px) scale(.985);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.modal.show .modal-card {
+  animation: mwModalPop .32s cubic-bezier(.2,.8,.2,1) both;
+}
+.loading-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.skeleton-card {
+  min-height: 310px;
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+  background: linear-gradient(90deg, rgba(255,255,255,.72), rgba(240,247,255,.96), rgba(255,255,255,.72));
+  background-size: 260% 100%;
+  box-shadow: var(--shadow);
+  animation: mwSkeleton 1.25s ease-in-out infinite;
+}
+@keyframes mwSoftGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes mwOrbFloat { 0%, 100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(28px,-24px,0) scale(1.06); } }
+@keyframes mwGlowPulse { 0%, 100% { box-shadow: 0 16px 34px rgba(0,104,255,.24); } 50% { box-shadow: 0 20px 56px rgba(0,104,255,.42); } }
+@keyframes mwButtonShine { 0%, 55% { transform: translateX(-130%); } 78%, 100% { transform: translateX(130%); } }
+@keyframes mwLogoBob { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-4px) rotate(2deg); } }
+@keyframes mwHeroIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes mwTextGradient { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes mwFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes mwRotate { to { transform: rotate(360deg); } }
+@keyframes mwPriceShimmer { 0% { background-position: -180% 0; } 100% { background-position: 180% 0; } }
+@keyframes mwModalPop { from { opacity: 0; transform: translateY(18px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes mwSkeleton { 0% { background-position: 120% 0; } 100% { background-position: -120% 0; } }
+@media (max-width:920px) { .loading-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width:700px) { .loading-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+</style></head><body>
+<div class="top"><div class="container">✅ Event tặng Free 2 lần/tuần vào tối thứ 4 và tối thứ 7 🔥</div></div>
+<header class="nav"><div class="container navin"><a class="brand" href="#top"><div class="logo">MW</div><div>Minh Wuan Store<small id="siteName">minhwuan.store</small></div></a><nav class="links"><a href="#combo">Combo</a><a href="#ai">App AI</a><a href="#edit">Video/Photo</a><a href="#entertainment">Giải trí</a><a class="btn btn-primary buy" id="navBuy" target="_blank">Mua qua Zalo</a></nav></div></header>
+<main id="top"><section class="hero"><div class="container hero-grid"><div class="hero-copy"><div class="badge" id="updateBadge">🔥 Bảng giá App Pro/Premium</div><h1>App xịn, giá tốt <span>kích hoạt nhanh.</span></h1><p>Mua ChatGPT, Gemini, CapCut, Canva, YouTube Premium, Netflix, Spotify và nhiều sản phẩm AI nhiều credit. Admin cập nhật giá trực tiếp qua backend Supabase.</p><div class="hero-actions"><a class="btn btn-primary" id="heroBuy" target="_blank">💬 Mua hàng qua Zalo</a><a class="btn btn-soft" id="heroGroup" target="_blank">👥 Tham gia cộng đồng</a></div></div><aside class="hero-card"><h2>Combo nổi bật</h2><div class="mini" id="featuredCombos"></div></aside></div></section>
+<section class="section" id="products"><div class="container"><div class="section-head"><div><h2>🛍️ Bảng giá sản phẩm</h2><p class="subtitle">Tìm nhanh sản phẩm, xem giá và bấm mua qua Zalo.</p></div><div class="search"><span>🔎</span><input id="search" placeholder="Tìm ChatGPT, CapCut, Netflix..."></div></div><div id="sections"></div><div class="empty" id="empty">Không tìm thấy sản phẩm phù hợp.</div></div></section>
+<section class="section" id="commit"><div class="container promise"><h2>✅ Cam kết</h2><div class="commit"><div>🛡️<h3>Bảo hành</h3><p class="subtitle">Bảo hành trong thời gian sử dụng.</p></div><div>⚡<h3>Kích hoạt nhanh</h3><p class="subtitle">Kích hoạt 1–5 phút sau khi chốt đơn.</p></div><div>💬<h3>Hỗ trợ Zalo</h3><p class="subtitle">Tư vấn gói phù hợp và xử lý lỗi nhanh.</p></div><div>🎁<h3>Event Free</h3><p class="subtitle">Tối thứ 4 và thứ 7 hằng tuần.</p></div></div></div></section></main>
+<div class="float"><a class="btn btn-primary" id="floatBuy" target="_blank">💬 Mua qua Zalo</a></div>
+<div class="modal" id="modal"><div class="modal-card"><button class="close" id="close">×</button><h2 id="popupTitle">Tham gia cộng đồng Zalo</h2><p class="subtitle" id="popupText"></p><div class="hero-actions"><a class="btn btn-primary" id="popupGroup" target="_blank">Tham gia nhóm ngay</a><button class="btn btn-soft" id="later">Để sau</button></div></div></div>
+<script>
+const labels={combo:["🎁 Combo tiết kiệm","combo"],ai:["🤖 App AI","ai"],edit:["🎬 Video / Photo","edit"],entertainment:["🎧 Giải trí","entertainment"]};let store={settings:{},products:[]};
+function moneyRows(prices){return(prices||[]).map(p=>`<li><span>${p.label}</span><b>${p.price}</b></li>`).join("")}
+function productCard(p){return`<article class="card product-card" data-search="${(p.name+" "+p.description+" "+(p.prices||[]).map(x=>x.label+" "+x.price).join(" ")).toLowerCase()}"><div class="visual"><img src="${p.image_url||""}" alt="${p.name}" onerror="this.style.display='none'"></div><div class="card-top"><h3>${p.name}</h3>${p.badge?`<span class="tag">${p.badge}</span>`:""}</div>${p.description?`<p class="desc">${p.description}</p>`:""}<ul class="prices">${moneyRows(p.prices)}</ul><a class="btn btn-primary" target="_blank" href="${store.settings.zaloBuyUrl||"#"}">Mua qua Zalo</a></article>`}
+function render(){document.getElementById("siteName").textContent=store.settings.website||"minhwuan.store";document.getElementById("updateBadge").textContent=`🔥 Bảng giá App Pro/Premium · Update ngày ${store.settings.updateDate||""}`;["navBuy","heroBuy","floatBuy"].forEach(id=>document.getElementById(id).href=store.settings.zaloBuyUrl||"#");["heroGroup","popupGroup"].forEach(id=>document.getElementById(id).href=store.settings.zaloGroupUrl||"#");document.getElementById("popupTitle").textContent=store.settings.popupTitle||"Tham gia cộng đồng Zalo Minh Wuan Store";document.getElementById("popupText").textContent=store.settings.popupText||"Vào nhóm để nhận thông báo event và bảng giá mới.";const sections=document.getElementById("sections");sections.innerHTML="";Object.entries(labels).forEach(([key,[title,anchor]])=>{const items=store.products.filter(p=>p.category===key);if(!items.length)return;const block=document.createElement("section");block.className="section";block.id=anchor;block.innerHTML=`<div class="section-head"><div><h2>${title}</h2></div></div><div class="grid">${items.map(productCard).join("")}</div>`;sections.appendChild(block)});document.getElementById("featuredCombos").innerHTML=store.products.filter(p=>p.category==="combo").slice(0,3).map(p=>`<a href="#combo"><strong>${p.name}</strong><span>${p.description||""}</span><b>${(p.prices&&p.prices[0]&&p.prices[0].price)||"Inbox"}</b></a>`).join("")}
+function filterCards(){const q=document.getElementById("search").value.trim().toLowerCase();let count=0;document.querySelectorAll(".product-card").forEach(c=>{const ok=!q||c.dataset.search.includes(q);c.style.display=ok?"":"none";if(ok)count++});document.getElementById("empty").classList.toggle("show",count===0)}
+async function init(){const res=await fetch("/api/store");store=await res.json();render();document.getElementById("search").addEventListener("input",filterCards);setTimeout(()=>document.getElementById("modal").classList.add("show"),650)}
+document.getElementById("close").onclick=()=>document.getElementById("modal").classList.remove("show");document.getElementById("later").onclick=()=>document.getElementById("modal").classList.remove("show");
+init().catch(()=>{document.getElementById("sections").innerHTML='<div class="empty show">Không tải được dữ liệu. Kiểm tra biến môi trường Vercel và Supabase.</div>'});
+</script><script>
+
+/* ===== Minh Wuan Store Motion Runtime ===== */
+(function () {
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const observed = new WeakSet();
+  let observer;
+
+  function initObserver() {
+    if (observer || reduceMotion) return;
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  }
+
+  function enhanceCardTilt(card) {
+    if (reduceMotion || card.dataset.tiltReady === "1") return;
+    card.dataset.tiltReady = "1";
+    card.addEventListener("mousemove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const rotateX = ((y / rect.height) - 0.5) * -4.5;
+      const rotateY = ((x / rect.width) - 0.5) * 4.5;
+      card.style.transform = `translateY(-8px) scale(1.015) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+    });
+  }
+
+  function applyMotionEffects(root = document) {
+    initObserver();
+    const targets = root.querySelectorAll(".card, .hero-copy, .hero-card, .section-head, .promise, .commit div, .mini a");
+    targets.forEach((item, index) => {
+      if (!observed.has(item)) {
+        observed.add(item);
+        item.classList.add("reveal-on-scroll");
+        item.style.transitionDelay = `${Math.min(index * 35, 280)}ms`;
+        if (observer) observer.observe(item);
+        if (reduceMotion) item.classList.add("is-visible");
+      }
+      if (item.classList.contains("card")) enhanceCardTilt(item);
+    });
+  }
+
+  function showSkeletonOnce() {
+    const sections = document.getElementById("sections");
+    if (!sections || sections.children.length) return;
+    sections.innerHTML = '<div class="loading-grid"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>';
+  }
+
+  window.MWApplyMotionEffects = applyMotionEffects;
+  document.addEventListener("DOMContentLoaded", () => {
+    showSkeletonOnce();
+    applyMotionEffects();
+    const container = document.getElementById("sections");
+    if (container) {
+      new MutationObserver(() => applyMotionEffects(container)).observe(container, { childList: true, subtree: true });
+    }
+  });
+})();
+</script></body></html>
