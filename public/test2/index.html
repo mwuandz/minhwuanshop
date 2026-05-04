@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minh Quân Profile</title>
   <meta name="description" content="Minh Quân Profile" />
-  <meta name="theme-color" content="#0b1020" />
+  <meta name="theme-color" content="#f3f7ff" />
   <style>
     :root{
       color-scheme: dark;
@@ -162,6 +162,14 @@
       letter-spacing:.08em;
       text-transform:uppercase;
       font-size:.88rem;
+    }
+
+    body[data-theme="light"] .preloader{
+      background:rgba(243,247,255,.88);
+    }
+
+    body[data-theme="light"] .preloader-text{
+      color:var(--muted);
     }
 
     @keyframes pulse{
@@ -1691,7 +1699,7 @@
     }
   </style>
 </head>
-<body data-theme="dark">
+<body data-theme="light">
   <div class="progress" id="progress"></div>
   <canvas id="particles"></canvas>
   <div class="aurora a1"></div>
@@ -2625,7 +2633,7 @@
     }
 
     function initTheme(){
-      const theme = localStorage.getItem("personal-site-theme") || "dark";
+      const theme = localStorage.getItem("personal-site-theme") || "light";
       applyTheme(theme);
       $("#themeToggle").addEventListener("click", toggleTheme);
     }
