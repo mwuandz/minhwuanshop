@@ -140,7 +140,54 @@ body::after {
   }
 }
 
+
+.notice-bar{
+  width:100%;
+  overflow:hidden;
+  background:linear-gradient(90deg,#ffecd2,#fcb69f,#ffd6e7);
+  border-bottom:1px solid rgba(15,23,42,.08);
+  position:relative;
+  z-index:999;
+}
+
+.notice-track{
+  display:flex;
+  width:max-content;
+  animation:noticeScroll 32s linear infinite;
+}
+
+.notice-text{
+  white-space:nowrap;
+  padding:12px 32px;
+  font-size:14px;
+  font-weight:800;
+  color:#7a1d1d;
+  letter-spacing:.2px;
+}
+
+@keyframes noticeScroll{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-50%);
+  }
+}
+
 </style></head><body>
+
+<div class="notice-bar">
+  <div class="notice-track">
+    <div class="notice-text">
+      ⚠️ LƯU Ý QUAN TRỌNG: Sản phẩm chúng tôi cung cấp không phục vụ cho bất kỳ mục đích vi phạm pháp luật nào. Tất cả sản phẩm đều được tạo hợp lệ, mua bán lại hoặc cung cấp với giá phù hợp. Khi mua và sử dụng sản phẩm, bạn là người tự chịu trách nhiệm với mục đích sử dụng của mình.
+    </div>
+
+    <div class="notice-text">
+      ⚠️ LƯU Ý QUAN TRỌNG: Sản phẩm chúng tôi cung cấp không phục vụ cho bất kỳ mục đích vi phạm pháp luật nào. Tất cả sản phẩm đều được tạo hợp lệ, mua bán lại hoặc cung cấp với giá phù hợp. Khi mua và sử dụng sản phẩm, bạn là người tự chịu trách nhiệm với mục đích sử dụng của mình.
+    </div>
+  </div>
+</div>
+
 <div class="top"><div class="container">✅ Event tặng Free 2 lần/tuần vào tối thứ 4 và tối thứ 7 🔥</div></div>
 <header class="nav"><div class="container navin"><a class="brand" href="#top"><div class="logo">MW</div><div>Minh Wuan Store<small id="siteName">minhwuan.store</small></div></a><nav class="links"><a href="#combo">Combo</a><a href="#ai">App AI</a><a href="#edit">Video/Photo</a><a href="#entertainment">Giải trí</a><a class="btn btn-primary buy" id="navBuy" target="_blank">Mua qua Zalo</a></nav></div></header>
 <main id="top"><section class="hero"><div class="container hero-grid"><div class="hero-copy"><div class="badge" id="updateBadge">🔥 Bảng giá App Pro/Premium</div><h1>App xịn, giá tốt <span>kích hoạt nhanh.</span></h1><p>Mua ChatGPT, Gemini, CapCut, Canva, YouTube Premium, Netflix, Spotify và nhiều sản phẩm AI nhiều credit. Tư vấn nhanh qua Zalo, bảo hành trong thời gian sử dụng.</p><div class="hero-actions"><a class="btn btn-primary" id="heroBuy" target="_blank">💬 Mua hàng qua Zalo</a><a class="btn btn-soft" id="heroGroup" target="_blank">👥 Tham gia cộng đồng</a></div></div><aside class="hero-card"><h2>Combo nổi bật</h2><div class="mini" id="featuredCombos"></div></aside></div></section>
