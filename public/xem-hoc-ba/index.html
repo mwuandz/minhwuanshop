@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xem học bạ cả lớp từ PDF</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    header {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      padding: 24px 18px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; font-size: 28px; }
+    header p { margin: 0; opacity: .9; }
+    .container {
+      max-width: 1250px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+    .card {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .08);
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .controls {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px 13px;
+      border-radius: 12px;
+      border: 1px solid #d1d5db;
+      font-size: 15px;
+    }
+    button {
+      border: none;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+      transition: .2s;
+    }
+    button:hover { background: #1d4ed8; }
+    button.secondary { background: #475569; }
+    button.secondary:hover { background: #334155; }
+    button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+    .status {
+      margin-top: 12px;
+      color: #475569;
+      font-size: 14px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 18px;
+    }
+    .student-list {
+      max-height: 720px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+    .student-item {
+      border: 1px solid #e5e7eb;
+      padding: 12px;
+      border-radius: 13px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      background: #fff;
+    }
+    .student-item:hover, .student-item.active {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+    .student-item strong { display: block; margin-bottom: 4px; }
+    .student-item span { color: #64748b; font-size: 13px; }
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .viewer-header h2 { margin: 0; font-size: 21px; }
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .actions button { padding: 9px 12px; font-size: 14px; width: auto; }
+    .page-info {
+      font-size: 14px;
+      color: #475569;
+      padding: 0 6px;
+      white-space: nowrap;
+    }
+    .pdf-wrap {
+      background: #334155;
+      border-radius: 16px;
+      padding: 18px;
+      min-height: 560px;
+      overflow: auto;
+      text-align: center;
+    }
+    canvas {
+      background: white;
+      max-width: 100%;
+      height: auto;
+      box-shadow: 0 8px 25px rgba(0,0,0,.25);
+    }
+    .text-box {
+      margin-top: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.55;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 16px;
+      padding: 16px;
+      max-height: 260px;
+      overflow: auto;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+      display: none;
+    }
+    .hint {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+    @media (max-width: 900px) {
+      .controls, .layout { grid-template-columns: 1fr; }
+      .viewer-header { flex-direction: column; align-items: stretch; }
+      .actions { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tra cứu học bạ cả lớp từ file PDF</h1>
+    <p>Tải PDF tổng hợp lên, lọc theo học sinh và xem trực tiếp trang học bạ như ảnh.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="controls">
+        <div>
+          <label for="pdfFile">Chọn file PDF tổng hợp học bạ</label>
+          <input id="pdfFile" type="file" accept="application/pdf" />
+        </div>
+        <div>
+          <label for="searchBox">Tìm theo tên / mã học sinh</label>
+          <input id="searchBox" type="text" placeholder="VD: Nguyễn Văn A" />
+        </div>
+        <button id="clearBtn">Xóa lọc</button>
+      </div>
+      <div id="status" class="status">Chưa có file PDF nào được tải lên.</div>
+      <p class="hint">
+        Web sẽ render từng trang PDF thành ảnh bằng canvas. Nếu mỗi học sinh có 2 trang, dùng nút Trang trước / Trang sau để xem tiếp.
+      </p>
+    </section>
+
+    <section class="layout">
+      <aside class="card">
+        <h2 style="margin-top:0">Danh sách học sinh</h2>
+        <div id="studentList" class="student-list"></div>
+      </aside>
+
+      <section class="card">
+        <div class="viewer-header">
+          <h2 id="viewerTitle">Xem PDF</h2>
+          <div class="actions">
+            <button id="prevBtn" class="secondary">← Trang trước</button>
+            <span id="pageInfo" class="page-info">Trang - / -</span>
+            <button id="nextBtn" class="secondary">Trang sau →</button>
+            <button id="zoomOutBtn">-</button>
+            <button id="zoomInBtn">+</button>
+            <button id="downloadImgBtn">Tải ảnh trang</button>
+            <button id="toggleTextBtn" class="secondary">Ẩn/hiện chữ đọc được</button>
+          </div>
+        </div>
+
+        <div class="pdf-wrap">
+          <canvas id="pdfCanvas"></canvas>
+        </div>
+        <div id="textBox" class="text-box">Chưa có nội dung.</div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+    const pdfFile = document.getElementById("pdfFile");
+    const searchBox = document.getElementById("searchBox");
+    const clearBtn = document.getElementById("clearBtn");
+    const statusEl = document.getElementById("status");
+    const studentList = document.getElementById("studentList");
+    const viewerTitle = document.getElementById("viewerTitle");
+    const pageInfo = document.getElementById("pageInfo");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const zoomInBtn = document.getElementById("zoomInBtn");
+    const zoomOutBtn = document.getElementById("zoomOutBtn");
+    const downloadImgBtn = document.getElementById("downloadImgBtn");
+    const toggleTextBtn = document.getElementById("toggleTextBtn");
+    const textBox = document.getElementById("textBox");
+    const canvas = document.getElementById("pdfCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let pdfDoc = null;
+    let pagesText = [];
+    let records = [];
+    let activeIndex = -1;
+    let currentPage = 1;
+    let scale = 1.45;
+    let isRendering = false;
+
+    pdfFile.addEventListener("change", handlePdfUpload);
+    searchBox.addEventListener("input", renderList);
+    clearBtn.addEventListener("click", () => {
+      searchBox.value = "";
+      renderList();
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (!pdfDoc || currentPage <= 1) return;
+      currentPage--;
+      renderPage(currentPage);
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (!pdfDoc || currentPage >= pdfDoc.numPages) return;
+      currentPage++;
+      renderPage(currentPage);
+    });
+
+    zoomInBtn.addEventListener("click", () => {
+      scale = Math.min(scale + 0.2, 3);
+      renderPage(currentPage);
+    });
+
+    zoomOutBtn.addEventListener("click", () => {
+      scale = Math.max(scale - 0.2, 0.6);
+      renderPage(currentPage);
+    });
+
+    downloadImgBtn.addEventListener("click", () => {
+      if (!pdfDoc) return;
+      const link = document.createElement("a");
+      link.download = `trang-${currentPage}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
+
+    toggleTextBtn.addEventListener("click", () => {
+      textBox.style.display = textBox.style.display === "block" ? "none" : "block";
+    });
+
+    async function handlePdfUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      records = [];
+      pagesText = [];
+      activeIndex = -1;
+      currentPage = 1;
+      studentList.innerHTML = "";
+      statusEl.textContent = "Đang xử lý PDF...";
+      viewerTitle.textContent = "Đang tải PDF...";
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      try {
+        const buffer = await file.arrayBuffer();
+        pdfDoc = await pdfjsLib.getDocument({ data: buffer }).promise;
+
+        for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+          const page = await pdfDoc.getPage(pageNum);
+          const textContent = await page.getTextContent();
+          const text = textContent.items.map(item => item.str).join(" ");
+          pagesText.push({ page: pageNum, text: normalizeText(text) });
+          statusEl.textContent = `Đang đọc dữ liệu trang ${pageNum}/${pdfDoc.numPages}...`;
+        }
+
+        records = buildStudentRecords(pagesText);
+        statusEl.textContent = `Đã tải xong ${pdfDoc.numPages} trang PDF. Tìm thấy khoảng ${records.length} học sinh.`;
+        renderList();
+
+        if (records.length > 0) selectRecord(0);
+        else renderPage(1);
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Lỗi khi đọc PDF.";
+        viewerTitle.textContent = "Không thể mở PDF";
+      }
+    }
+
+    async function renderPage(pageNum) {
+      if (!pdfDoc || isRendering) return;
+      isRendering = true;
+
+      try {
+        const page = await pdfDoc.getPage(pageNum);
+        const viewport = page.getViewport({ scale });
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        await page.render({ canvasContext: ctx, viewport }).promise;
+        currentPage = pageNum;
+        pageInfo.textContent = `Trang ${currentPage} / ${pdfDoc.numPages}`;
+        prevBtn.disabled = currentPage <= 1;
+        nextBtn.disabled = currentPage >= pdfDoc.numPages;
+
+        const pageText = pagesText.find(p => p.page === currentPage)?.text || "Không đọc được chữ ở trang này.";
+        textBox.textContent = pageText;
+      } finally {
+        isRendering = false;
+      }
+    }
+
+    function normalizeText(text) {
+      return text
+        .replace(/\s+/g, " ")
+        .replace(/(Họ và tên|Họ tên|HOC SINH|HỌC SINH|Lớp|Ngày sinh|Năm học)/g, "\n$1")
+        .trim();
+    }
+
+    function buildStudentRecords(pages) {
+      // Ưu tiên: mỗi trang là một học bạ hoặc một phần học bạ.
+      // Web lấy tên học sinh từ từng trang, rồi bấm tên sẽ nhảy đến đúng trang PDF.
+      return pages.map((p, index) => {
+        const name = extractName(p.text) || `Trang ${p.page}`;
+        const klass = extractClass(p.text);
+        return {
+          name,
+          className: klass,
+          page: p.page,
+          text: p.text,
+          index
+        };
+      });
+    }
+
+    function extractName(text) {
+      const patterns = [
+        /Họ và tên\s*[:：]?\s*([^\n]{3,80})/i,
+        /Họ tên\s*[:：]?\s*([^\n]{3,80})/i,
+        /HỌ VÀ TÊN\s*[:：]?\s*([^\n]{3,80})/i,
+        /HỌC SINH\s*[:：]?\s*([^\n]{3,80})/i
+      ];
+      for (const p of patterns) {
+        const match = text.match(p);
+        if (match) return cleanName(match[1]);
+      }
+      return "";
+    }
+
+    function cleanName(name) {
+      return name
+        .replace(/(Ngày sinh|Sinh ngày|Lớp|Năm học|Giới tính|Dân tộc|Mã học sinh).*$/i, "")
+        .replace(/[0-9]{2}\/[0-9]{2}\/[0-9]{4}.*/g, "")
+        .trim();
+    }
+
+    function extractClass(text) {
+      const match = text.match(/Lớp\s*[:：]?\s*([^\n]{1,25})/i);
+      return match ? match[1].replace(/(Năm học|Giáo viên|Ngày sinh).*$/i, "").trim() : "";
+    }
+
+    function renderList() {
+      const keyword = searchBox.value.toLowerCase().trim();
+      studentList.innerHTML = "";
+
+      const filtered = records.filter(record => {
+        const haystack = `${record.name} ${record.className} ${record.text}`.toLowerCase();
+        return haystack.includes(keyword);
+      });
+
+      if (filtered.length === 0) {
+        studentList.innerHTML = `<p class="hint">Không tìm thấy học sinh phù hợp.</p>`;
+        return;
+      }
+
+      filtered.forEach(record => {
+        const item = document.createElement("div");
+        item.className = "student-item" + (record.index === activeIndex ? " active" : "");
+        item.innerHTML = `
+          <strong>${escapeHtml(record.name)}</strong>
+          <span>${record.className ? "Lớp: " + escapeHtml(record.className) + " · " : ""}Trang ${record.page}</span>
+        `;
+        item.onclick = () => selectRecord(record.index);
+        studentList.appendChild(item);
+      });
+    }
+
+    function selectRecord(index) {
+      activeIndex = index;
+      const record = records[index];
+      viewerTitle.textContent = record.name;
+      currentPage = record.page;
+      renderPage(currentPage);
+      renderList();
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+  </script>
+</body>
+</html>
