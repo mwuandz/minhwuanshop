@@ -1,0 +1,14 @@
+{
+  "name": "link-shortener-web",
+  "version": "1.0.0",
+  "description": "Simple link shortener website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "nanoid": "^3.3.7"
+  }
+}
